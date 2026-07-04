@@ -13,7 +13,7 @@
   );
 
   if (items.length === 0) {
-    listEl.innerHTML = '<p class="empty-state">등록된 작품이 없습니다.</p>';
+    listEl.innerHTML = '<p class="empty-state">No works listed yet.</p>';
     return;
   }
 

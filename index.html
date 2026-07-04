@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,31 +7,76 @@
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <main class="landing">
-    <div>
+  <div class="profile-layout">
+    <aside class="profile-sidebar">
+      <img
+        class="avatar"
+        src="assets/img/profile.jpg"
+        alt="SangWoo Chon"
+        onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22160%22 height=%22160%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23e5e7eb%22/><text x=%2250%25%22 y=%2258%25%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22%236b7280%22 font-family=%22sans-serif%22>SC</text></svg>'"
+      >
       <h1>SangWoo Chon</h1>
-      <p class="tagline">Business Analytics · AI/NLP · FinTech</p>
-    </div>
 
-    <div class="contact-links">
-      <a href="mailto:csw02087@gmail.com">Email</a>
-      <a href="#" id="linkedin-link">LinkedIn</a>
-    </div>
+      <section class="side-block">
+        <h2>Education</h2>
+        <ul class="edu-list">
+          <li>
+            <span class="edu-school">Washington University in St. Louis</span>
+            <span class="edu-degree">M.S. in Business Analytics (FinTech)</span>
+            <span class="edu-date">Aug 2026 – Dec 2027</span>
+          </li>
+          <li>
+            <span class="edu-school">Hanyang University</span>
+            <span class="edu-degree">B.S. in Business Administration / Big Data Science</span>
+            <span class="edu-date">Mar 2021 – Aug 2026</span>
+          </li>
+        </ul>
+      </section>
 
-    <nav class="category-nav">
-      <a class="category-card" href="list.html?cat=finance">
-        <span class="cat-title">Finance</span>
-        <span class="cat-note">주식 동아리 보고서</span>
-      </a>
-      <a class="category-card" href="list.html?cat=pricing">
-        <span class="cat-title">Pricing</span>
-        <span class="cat-note">Coming soon</span>
-      </a>
-      <a class="category-card" href="list.html?cat=nlp">
-        <span class="cat-title">Natural Language Processing</span>
-        <span class="cat-note">논문 · 연구실 작업</span>
-      </a>
-    </nav>
-  </main>
+      <div class="tag-list">
+        <span class="tag">Business Analytics</span>
+        <span class="tag">AI/NLP</span>
+        <span class="tag">FinTech</span>
+        <span class="tag">Finance</span>
+      </div>
+
+      <div class="contact-links contact-links-vertical">
+        <a href="mailto:csw02087@gmail.com">Email</a>
+        <a href="#" id="linkedin-link">LinkedIn</a>
+      </div>
+    </aside>
+
+    <main class="profile-main">
+      <h2>Experience</h2>
+      <ul class="experience-list">
+        <li class="experience-item">
+          <div class="exp-header">
+            <span class="exp-title">Add your experience here</span>
+            <span class="exp-date">TBD</span>
+          </div>
+          <p class="exp-org">Organization / Role</p>
+          <p class="exp-desc">Short description of what you did and what you learned.</p>
+        </li>
+      </ul>
+    </main>
+
+    <aside class="profile-projects">
+      <h2>Projects</h2>
+      <nav class="category-nav-vertical">
+        <a class="category-card" href="list.html?cat=finance">
+          <span class="cat-title">Finance</span>
+          <span class="cat-note">Investment club reports</span>
+        </a>
+        <a class="category-card" href="list.html?cat=pricing">
+          <span class="cat-title">Pricing</span>
+          <span class="cat-note">Coming soon</span>
+        </a>
+        <a class="category-card" href="list.html?cat=nlp">
+          <span class="cat-title">Natural Language Processing</span>
+          <span class="cat-note">Papers &amp; lab work</span>
+        </a>
+      </nav>
+    </aside>
+  </div>
 </body>
 </html>
