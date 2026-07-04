@@ -1,4 +1,4 @@
-// category: 'finance' | 'pricing' | 'nlp'
+// category: 'finance' | 'pricing' | 'nlp' | 'market-reports' | 'research'
 // To add a work, push an object onto the array below.
 // The `content` field is the detail page body and accepts raw HTML.
 const WORKS = [
@@ -16,7 +16,9 @@ const WORKS = [
 ];
 
 const CATEGORY_LABELS = {
-  finance: 'Finance',
-  pricing: 'Pricing',
-  nlp: 'Natural Language Processing',
+  finance: 'Finance Project',
+  pricing: 'Pricing Project',
+  nlp: 'NLP Project',
+  'market-reports': 'Market Reports',
+  research: 'Research',
 };
