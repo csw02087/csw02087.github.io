@@ -197,6 +197,48 @@ a {
   color: var(--accent);
 }
 
+.project-section {
+  margin-bottom: 2rem;
+}
+
+.project-section:last-child {
+  margin-bottom: 0;
+}
+
+.project-section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.project-section-header h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.project-section-header h3 a:hover {
+  color: var(--accent);
+}
+
+.btn-outline-sm {
+  font-size: 0.78rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.btn-outline-sm:hover {
+  color: var(--accent);
+}
+
+.empty-state-sm {
+  margin: 0;
+  padding: 0.75rem 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
 .profile-main h2 {
   font-size: 1rem;
   text-transform: uppercase;
