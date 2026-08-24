@@ -22,6 +22,18 @@
       <span>${CATEGORY_LABELS[item.category]}</span>
     </div>
     <div class="detail-content">${item.content}</div>
-    ${item.link ? `<a class="detail-link" href="${item.link}" target="_blank" rel="noopener">View original &rarr;</a>` : ''}
+    ${
+      item.link
+        ? `<section class="pdf-section" aria-labelledby="pdf-heading">
+            <div class="pdf-section-header">
+              <h2 id="pdf-heading">Report</h2>
+              <a href="${item.link}">Open PDF directly &rarr;</a>
+            </div>
+            <object class="pdf-viewer" data="${item.link}#view=FitH" type="application/pdf" aria-label="${item.title} PDF">
+              <p>PDF preview is unavailable. <a href="${item.link}">Open the PDF directly.</a></p>
+            </object>
+          </section>`
+        : ''
+    }
   `;
 })();

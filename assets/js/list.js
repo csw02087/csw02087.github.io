@@ -26,7 +26,7 @@
     ${items
     .map(
       (item) => `
-      <a class="work-row" role="row" href="${item.link || `detail.html?id=${encodeURIComponent(item.id)}`}">
+      <a class="work-row" role="row" href="detail.html?id=${encodeURIComponent(item.id)}">
         <span class="work-title" role="cell">${item.title}</span>
         <time role="cell" datetime="${item.writtenDate}">${item.writtenDate}</time>
         <time role="cell" datetime="${item.postedDate}">${item.postedDate}</time>
