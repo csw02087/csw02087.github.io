@@ -17,7 +17,8 @@
     <h1>${item.title}</h1>
     <div class="detail-meta">
       <span>${item.experience}</span>
-      <span>${item.date}</span>
+      <span>Written ${item.writtenDate}</span>
+      <span>Posted ${item.postedDate}</span>
       <span>${CATEGORY_LABELS[item.category]}</span>
     </div>
     <div class="detail-content">${item.content}</div>

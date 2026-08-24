@@ -9,29 +9,10 @@
 <body>
   <main class="page">
     <a class="back-link" href="index.html">&larr; Home</a>
-    <h1>Projects</h1>
-    <nav class="category-grid">
-      <a class="category-card" href="list.html?cat=finance">
-        <span class="cat-title">Finance Project</span>
-        <span class="cat-note">Coming soon</span>
-      </a>
-      <a class="category-card" href="list.html?cat=pricing">
-        <span class="cat-title">Pricing Project</span>
-        <span class="cat-note">Coming soon</span>
-      </a>
-      <a class="category-card" href="list.html?cat=nlp">
-        <span class="cat-title">NLP Project</span>
-        <span class="cat-note">Coming soon</span>
-      </a>
-      <a class="category-card" href="list.html?cat=market-reports">
-        <span class="cat-title">Industry &amp; Company Research Reports</span>
-        <span class="cat-note">Investment club reports</span>
-      </a>
-      <a class="category-card" href="list.html?cat=research">
-        <span class="cat-title">Research</span>
-        <span class="cat-note">Papers &amp; lab work</span>
-      </a>
-    </nav>
+    <h1 id="page-title">Projects</h1>
+    <div id="work-list" class="work-list" role="table" aria-label="All projects"></div>
   </main>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/list.js"></script>
 </body>
 </html>

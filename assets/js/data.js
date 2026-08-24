@@ -7,7 +7,8 @@ const WORKS = [
     category: 'market-reports',
     title: 'BH(090460 KOSPI) Company Research',
     experience: 'HYU Investment Club Research',
-    date: '2024-11',
+    writtenDate: '2024-11',
+    postedDate: '2026-08-24',
     summary: 'Company analysis of BH(090460 KOSPI).',
     content: `
       <p>This report examines BH(090460 KOSPI) valuation and market position.</p>
