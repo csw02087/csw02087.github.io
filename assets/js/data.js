@@ -15,6 +15,19 @@ const WORKS = [
     `,
     link: 'reports/bh-company-analysis-eng.pdf'
   },
+  {
+    id: 'market-report-02',
+    category: 'market-reports',
+    title: 'VT Cosmetics (018290, KQ) Company Research',
+    experience: 'HYU Investment Club Research',
+    writtenDate: '2024-07-26',
+    postedDate: '2026-08-25',
+    summary: 'Company analysis of VT Cosmetics (018290, KQ).',
+    content: `
+      <p>This report examines VT Cosmetics’ growth outlook, valuation, and market position.</p>
+    `,
+    link: 'reports/vt-company-analysis-eng.pdf'
+  },
 ];
 
 const CATEGORY_LABELS = {
