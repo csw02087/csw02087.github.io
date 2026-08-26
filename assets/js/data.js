@@ -5,26 +5,26 @@ const WORKS = [
   {
     id: 'market-report-01',
     category: 'market-reports',
-    title: 'BH(090460 KOSPI) Company Research',
+    title: 'BH(KS090460) Company Research',
     experience: 'HYU Investment Club Research',
     writtenDate: '2024-11-05',
     postedDate: '2026-08-24',
-    summary: 'Company analysis of BH(090460 KOSPI).',
+    summary: 'Company analysis of BH(KSS090460) valuation and market position.',
     content: `
-      <p>This report examines BH(090460 KOSPI) valuation and market position.</p>
+      <p>This report examines BH(KS090460) valuation and market position.</p>
     `,
     link: 'reports/bh-company-analysis-eng.pdf'
   },
   {
     id: 'market-report-02',
     category: 'market-reports',
-    title: 'VT Cosmetics (018290, KQ) Company Research',
+    title: 'VT(KQ018290) Company Research',
     experience: 'HYU Investment Club Research',
     writtenDate: '2024-07-26',
-    postedDate: '2026-08-25',
-    summary: 'Company analysis of VT Cosmetics (018290, KQ).',
+    postedDate: '2026-08-24',
+    summary: 'Company analysis of VT(KQ018290) valuation and market position.',
     content: `
-      <p>This report examines VT Cosmetics’ growth outlook, valuation, and market position.</p>
+      <p>This report examines VT(KQ018290) valuation and market position.</p>
     `,
     link: 'reports/vt-company-analysis-eng.pdf'
   },
