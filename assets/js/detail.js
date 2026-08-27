@@ -29,7 +29,10 @@
               <h2 id="pdf-heading">Report</h2>
               <a href="${item.link}">Open PDF directly &rarr;</a>
             </div>
-            <div class="pdf-viewer" data-pdf-url="${item.link}" aria-label="${item.title} PDF" aria-busy="true">
+            <object class="pdf-desktop-viewer" data="${item.link}#view=FitH" type="application/pdf" aria-label="${item.title} PDF">
+              <p>PDF preview is unavailable. <a href="${item.link}">Open the PDF directly.</a></p>
+            </object>
+            <div class="pdf-mobile-viewer" data-pdf-url="${item.link}" aria-label="${item.title} PDF" aria-busy="true">
               <p class="pdf-status" role="status">Loading PDF preview&hellip;</p>
             </div>
           </section>`
@@ -37,12 +40,12 @@
     }
   `;
 
-  if (item.link) {
+  if (item.link && window.matchMedia('(max-width: 768px)').matches) {
     renderPdf(item.link);
   }
 
   async function renderPdf(pdfUrl) {
-    const viewer = document.querySelector('.pdf-viewer');
+    const viewer = document.querySelector('.pdf-mobile-viewer');
 
     try {
       if (!window.pdfjsLib) {
