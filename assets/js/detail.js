@@ -29,11 +29,66 @@
               <h2 id="pdf-heading">Report</h2>
               <a href="${item.link}">Open PDF directly &rarr;</a>
             </div>
-            <object class="pdf-viewer" data="${item.link}#view=FitH" type="application/pdf" aria-label="${item.title} PDF">
-              <p>PDF preview is unavailable. <a href="${item.link}">Open the PDF directly.</a></p>
-            </object>
+            <div class="pdf-viewer" data-pdf-url="${item.link}" aria-label="${item.title} PDF" aria-busy="true">
+              <p class="pdf-status" role="status">Loading PDF preview&hellip;</p>
+            </div>
           </section>`
         : ''
     }
   `;
+
+  if (item.link) {
+    renderPdf(item.link);
+  }
+
+  async function renderPdf(pdfUrl) {
+    const viewer = document.querySelector('.pdf-viewer');
+
+    try {
+      if (!window.pdfjsLib) {
+        throw new Error('PDF.js failed to load.');
+      }
+
+      window.pdfjsLib.GlobalWorkerOptions.workerSrc =
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+      const pdf = await window.pdfjsLib.getDocument(pdfUrl).promise;
+      viewer.innerHTML = '';
+
+      for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber += 1) {
+        const page = await pdf.getPage(pageNumber);
+        const unscaledViewport = page.getViewport({ scale: 1 });
+        const availableWidth = Math.min(viewer.clientWidth - 24, 900);
+        const scale = availableWidth / unscaledViewport.width;
+        const viewport = page.getViewport({ scale });
+        const outputScale = Math.min(window.devicePixelRatio || 1, 2);
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+
+        canvas.className = 'pdf-page';
+        canvas.width = Math.floor(viewport.width * outputScale);
+        canvas.height = Math.floor(viewport.height * outputScale);
+        canvas.style.width = `${Math.floor(viewport.width)}px`;
+        canvas.style.height = `${Math.floor(viewport.height)}px`;
+        canvas.setAttribute('aria-label', `Page ${pageNumber} of ${pdf.numPages}`);
+        viewer.appendChild(canvas);
+
+        await page.render({
+          canvasContext: context,
+          transform: outputScale !== 1 ? [outputScale, 0, 0, outputScale, 0, 0] : null,
+          viewport,
+        }).promise;
+      }
+
+      viewer.setAttribute('aria-busy', 'false');
+    } catch (error) {
+      console.error('Unable to render PDF preview.', error);
+      viewer.setAttribute('aria-busy', 'false');
+      viewer.innerHTML = `
+        <p class="pdf-status">
+          PDF preview is unavailable.
+          <a href="${pdfUrl}" target="_blank" rel="noopener">Open the PDF directly.</a>
+        </p>`;
+    }
+  }
 })();
