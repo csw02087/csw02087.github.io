@@ -559,6 +559,18 @@ a {
   margin-top: 2rem;
 }
 
+.project-viewers.pdf-only {
+  display: block;
+  max-width: 900px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.project-viewers.pdf-only .pdf-desktop-viewer {
+  height: 90vh;
+  min-height: 800px;
+}
+
 .viewer-panel {
   min-width: 0;
 }

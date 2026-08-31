@@ -11,6 +11,7 @@
   }
 
   document.title = `${item.title} · SangWoo Chon`;
+  const usesCodeViewer = item.category !== 'analysis-reports';
 
   root.innerHTML = `
     <a class="back-link" href="list.html?cat=${encodeURIComponent(item.category)}">&larr; Back to ${CATEGORY_LABELS[item.category]}</a>
@@ -22,7 +23,7 @@
       <span>${CATEGORY_LABELS[item.category]}</span>
     </div>
     <div class="detail-content">${item.content}</div>
-    <div class="project-viewers">
+    <div class="project-viewers${usesCodeViewer ? '' : ' pdf-only'}">
       <section class="viewer-panel pdf-section" aria-labelledby="pdf-heading">
         <div class="viewer-panel-header">
           <h2 id="pdf-heading">Related PDF</h2>
@@ -38,16 +39,18 @@
           : '<div class="viewer-empty">No PDF has been added for this project yet.</div>'}
       </section>
 
-      <section class="viewer-panel code-section" aria-labelledby="code-heading">
-        <div class="viewer-panel-header">
-          <h2 id="code-heading">Code</h2>
-        </div>
-        <div id="code-viewer" class="code-viewer" aria-live="polite"></div>
-      </section>
+      ${usesCodeViewer
+        ? `<section class="viewer-panel code-section" aria-labelledby="code-heading">
+            <div class="viewer-panel-header">
+              <h2 id="code-heading">Code</h2>
+            </div>
+            <div id="code-viewer" class="code-viewer" aria-live="polite"></div>
+          </section>`
+        : ''}
     </div>
   `;
 
-  renderCodeViewer(item.codeFiles || []);
+  if (usesCodeViewer) renderCodeViewer(item.codeFiles || []);
 
   if (item.link && window.matchMedia('(max-width: 768px)').matches) {
     renderPdf(item.link);
