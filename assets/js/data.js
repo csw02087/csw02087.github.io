@@ -1,6 +1,8 @@
 // category: 'portfolio-management' | 'risk-management' | 'analysis-reports' | 'publication'
 // To add a work, push an object onto the array below.
 // The `content` field is the detail page body and accepts raw HTML.
+// Add code with `codeFiles: [{ name: 'analysis.py', language: 'python', path: 'code/analysis.py' }]`.
+// Use `content` instead of `path` when the source should be embedded directly in this file.
 const WORKS = [
   {
     id: 'market-report-01',
@@ -13,7 +15,8 @@ const WORKS = [
     content: `
       <p>This report examines BH(090460.KS) valuation and market position.</p>
     `,
-    link: 'reports/bh-company-analysis-eng.pdf'
+    link: 'reports/bh-company-analysis-eng.pdf',
+    codeFiles: []
   },
   {
     id: 'market-report-02',
@@ -26,7 +29,8 @@ const WORKS = [
     content: `
       <p>This report examines VT(018290.KQ) valuation and market position.</p>
     `,
-    link: 'reports/vt-company-analysis-eng.pdf'
+    link: 'reports/vt-company-analysis-eng.pdf',
+    codeFiles: []
   },
 ];
 
