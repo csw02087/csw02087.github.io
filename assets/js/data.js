@@ -1,4 +1,4 @@
-// category: 'portfolio-management' | 'risk-management' | 'analysis-reports' | 'publication'
+// category: 'portfolio-management' | 'risk-management' | 'other-finance-projects' | 'analysis-reports' | 'publication'
 // To add a work, push an object onto the array below.
 // The `content` field is the detail page body and accepts raw HTML.
 // Add code with `codeFiles: [{ name: 'analysis.py', language: 'python', path: 'code/analysis.py' }]`.
@@ -37,6 +37,7 @@ const WORKS = [
 const CATEGORY_LABELS = {
   'portfolio-management': 'Portfolio Management Project',
   'risk-management': 'Risk Management Project',
+  'other-finance-projects': 'Other Finance Projects',
   'analysis-reports': 'Analysis Reports',
   publication: 'Publication',
 };
