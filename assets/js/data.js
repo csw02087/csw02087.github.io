@@ -32,6 +32,34 @@ const WORKS = [
     link: 'reports/vt-company-analysis-eng.pdf',
     codeFiles: []
   },
+  {
+    id: 'other-finance-01',
+    category: 'other-finance-projects',
+    title: 'AI Based Malicious Comment Insurance Service Project',
+    experience: 'Team Project',
+    writtenDate: '2026-05-15',
+    postedDate: '2026-08-31',
+    summary: 'AI based malicious comment insurance service project.',
+    content: `
+      <p>Project description.</p>
+  `,
+    link: 'reports/AI based Malicious Comment Legal Risk Insurance Service Project.pdf',
+    codeFiles: []
+  },
+    {
+    id: 'risk-management-finance-01',
+    category: 'risk-management',
+    title: 'Carhart 4 Factor Project',
+    experience: 'Team Project',
+    writtenDate: '2026-02-23',
+    postedDate: '2026-08-31',
+    summary: 'Carhart 4 Factor Project Checking the risks.',
+    content: `
+      <p>Project description.</p>
+  `,
+    link: 'reports/Carhart 4 Factor Project.pdf',
+    codeFiles: []
+  },
 ];
 
 const CATEGORY_LABELS = {
