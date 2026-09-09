@@ -78,7 +78,7 @@ const WORKS = [
     codeFiles: [
       {
         name: 'KCI_FI003240857 Code.ipynb',
-        language: 'json',
+        language: 'python',
         path: 'reports/KCI_FI003240857 Code.ipynb'
       }
     ]

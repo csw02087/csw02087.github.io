@@ -147,7 +147,10 @@
         const source = Object.prototype.hasOwnProperty.call(file, 'content')
           ? file.content
           : await fetchCode(file.path);
-        content.innerHTML = `<pre tabindex="0"><code class="language-${escapeHtml(file.language || 'text')}">${escapeHtml(source)}</code></pre>`;
+        const isNotebook = file.path && file.path.toLowerCase().endsWith('.ipynb');
+        const displaySource = isNotebook ? notebookToPython(source) : source;
+        const language = isNotebook ? 'python' : (file.language || 'text');
+        content.innerHTML = `<pre tabindex="0"><code class="language-${escapeHtml(language)}">${escapeHtml(displaySource)}</code></pre>`;
       } catch (error) {
         console.error('Unable to load source code.', error);
         content.innerHTML = '<p class="code-status">Unable to load this source file.</p>';
@@ -160,6 +163,34 @@
     const response = await fetch(path);
     if (!response.ok) throw new Error(`Code request failed: ${response.status}`);
     return response.text();
+  }
+
+  function notebookToPython(source) {
+    const notebook = JSON.parse(source);
+
+    if (!Array.isArray(notebook.cells)) {
+      throw new Error('Notebook cells are missing.');
+    }
+
+    return notebook.cells.map((cell) => {
+      const cellSource = Array.isArray(cell.source)
+        ? cell.source.join('')
+        : String(cell.source || '');
+
+      if (cell.cell_type === 'markdown') {
+        const commentedMarkdown = cellSource
+          .split('\n')
+          .map((line) => line ? `# ${line}` : '#')
+          .join('\n');
+        return `# %% [markdown]\n${commentedMarkdown}`;
+      }
+
+      if (cell.cell_type === 'code') {
+        return `# %%\n${cellSource}`;
+      }
+
+      return '';
+    }).filter(Boolean).join('\n\n');
   }
 
   function escapeHtml(value) {
