@@ -30,10 +30,7 @@
           ${item.link ? `<a href="${item.link}" target="_blank" rel="noopener">Open PDF &rarr;</a>` : ''}
         </div>
         ${item.link
-          ? `<object class="pdf-desktop-viewer" data="${item.link}#view=FitH" type="application/pdf" aria-label="${item.title} PDF">
-              <p>PDF preview is unavailable. <a href="${item.link}">Open the PDF directly.</a></p>
-            </object>
-            <div class="pdf-mobile-viewer" data-pdf-url="${item.link}" aria-label="${item.title} PDF" aria-busy="true">
+          ? `<div class="pdf-mobile-viewer" data-pdf-url="${item.link}" aria-label="${item.title} PDF" aria-busy="true">
               <p class="pdf-status" role="status">Loading PDF preview&hellip;</p>
             </div>`
           : '<div class="viewer-empty">No PDF has been added for this project yet.</div>'}
@@ -52,7 +49,7 @@
 
   if (usesCodeViewer) renderCodeViewer(item.codeFiles || []);
 
-  if (item.link && window.matchMedia('(max-width: 768px)').matches) {
+  if (item.link) {
     renderPdf(item.link);
   }
 
