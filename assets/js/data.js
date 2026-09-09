@@ -31,7 +31,13 @@ const WORKS = [
       <p>Project description.</p>
   `,
     link: 'reports/AI based Malicious Comment Legal Risk Insurance Service Project.pdf',
-    codeFiles: []
+    codeFiles: [
+      {
+        name: 'AI based Malicious Comment Legal Risk Insurance Service Project Code.ipynb',
+        language: 'python',
+        path: '/reports/AI based Malicious Comment Legal Risk Insurance Service Project Code.ipynb'
+      }
+    ]
   },
 
   {
@@ -78,7 +84,7 @@ const WORKS = [
     codeFiles: [
       {
         name: 'KCI_FI003240857 Code.ipynb',
-        language: 'python',
+        language: 'json',
         path: 'reports/KCI_FI003240857 Code.ipynb'
       }
     ]
