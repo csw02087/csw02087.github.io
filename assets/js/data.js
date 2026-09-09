@@ -75,7 +75,13 @@ const WORKS = [
       <p>Project description.</p>
   `,
     link: 'reports/KCI_FI003240857.pdf',
-    codeFiles: []
+    codeFiles: [
+      {
+        name: 'KCI_FI003240857 Code.ipynb',
+        language: 'json',
+        path: 'reports/KCI_FI003240857 Code.ipynb'
+      }
+    ]
   },
 ];
 
