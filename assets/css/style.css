@@ -688,6 +688,107 @@ a {
   tab-size: 2;
 }
 
+.notebook-document {
+  min-height: 100%;
+  padding: 1rem;
+  background: #f8fafc;
+  color: #111827;
+}
+
+.notebook-cell {
+  position: relative;
+  margin: 0 0 0.85rem;
+}
+
+.notebook-markdown-cell {
+  padding: 0.45rem 0.85rem 0.45rem 4.75rem;
+}
+
+.notebook-markdown h1,
+.notebook-markdown h2,
+.notebook-markdown h3,
+.notebook-markdown h4,
+.notebook-markdown h5,
+.notebook-markdown h6 {
+  margin: 0 0 0.65rem;
+  line-height: 1.3;
+}
+
+.notebook-markdown h1 { font-size: 1.5rem; }
+.notebook-markdown h2 { font-size: 1.3rem; }
+.notebook-markdown h3 { font-size: 1.12rem; }
+.notebook-markdown h4,
+.notebook-markdown h5,
+.notebook-markdown h6 { font-size: 1rem; }
+
+.notebook-markdown p {
+  margin: 0 0 0.75rem;
+  color: #374151;
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+
+.notebook-markdown code {
+  padding: 0.1em 0.3em;
+  border-radius: 4px;
+  background: #e5e7eb;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
+.notebook-code-cell {
+  display: grid;
+  grid-template-columns: 4.25rem minmax(0, 1fr);
+  align-items: start;
+}
+
+.notebook-input-prompt {
+  padding: 0.95rem 0.5rem 0 0;
+  color: #2563eb;
+  font: 0.72rem/1.5 "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.code-content .notebook-code-cell > pre {
+  min-width: 0;
+  overflow-x: auto;
+  border: 1px solid #d1d5db;
+  border-radius: 5px;
+  background: #fff;
+  color: #111827;
+}
+
+.notebook-outputs {
+  grid-column: 2;
+}
+
+.code-content .notebook-output {
+  min-width: 0;
+  margin-top: 0.35rem;
+  overflow-x: auto;
+  border-left: 3px solid #9ca3af;
+  background: #f3f4f6;
+  color: #111827;
+}
+
+@media (max-width: 640px) {
+  .notebook-document {
+    padding: 0.65rem;
+  }
+
+  .notebook-markdown-cell {
+    padding-left: 0.35rem;
+  }
+
+  .notebook-code-cell {
+    grid-template-columns: 3.35rem minmax(0, 1fr);
+  }
+
+  .notebook-input-prompt {
+    font-size: 0.65rem;
+  }
+}
+
 .code-status,
 .viewer-empty {
   display: grid;
