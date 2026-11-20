@@ -1,0 +1,1281 @@
+{
+"fys": [
+"FY23",
+"FY24",
+"FY25",
+"FY26"
+],
+"qs": [
+"1Q23",
+"2Q23",
+"3Q23",
+"4Q23",
+"1Q24",
+"2Q24",
+"3Q24",
+"4Q24",
+"1Q25",
+"2Q25",
+"3Q25",
+"4Q25",
+"1Q26",
+"2Q26",
+"3Q26",
+"4Q26",
+"1Q27",
+"2Q27",
+"3Q27"
+],
+"annual": {
+"rev": {
+"FY23": 611289.0,
+"FY24": 648125.0,
+"FY25": 680985.0,
+"FY26": 713163.0
+},
+"ebitda": {
+"FY23": 35473.0,
+"FY24": 38865.0,
+"FY25": 42321.0,
+"FY26": 44028.0
+},
+"ebit": {
+"FY23": 24528.0,
+"FY24": 27012.0,
+"FY25": 29348.0,
+"FY26": 29825.0
+},
+"da": {
+"FY23": 10945.0,
+"FY24": 11853.0,
+"FY25": 12973.0,
+"FY26": 14203.0
+},
+"capex": {
+"FY23": 16857.0,
+"FY24": 20606.0,
+"FY25": 23783.0,
+"FY26": 26642.0
+},
+"fcf": {
+"FY23": 10365.0437235543,
+"FY24": 11665.582204320763,
+"FY25": 11005.371393819602,
+"FY26": 12599.032542671957
+},
+"nwc": {
+"FY23": -18565.0,
+"FY24": -18868.0,
+"FY25": -18198.0,
+"FY26": -20697.0
+},
+"d_nwc": {
+"FY23": 0.0,
+"FY24": -303.0,
+"FY25": 670.0,
+"FY26": -2499.0
+},
+"ebitda_margin": {
+"FY23": 0.05802983531521097,
+"FY24": 0.05996528447444552,
+"FY25": 0.062146743320337455,
+"FY26": 0.06173623701734386
+},
+"ebit_margin": {
+"FY23": 0.040125047236249954,
+"FY24": 0.0416771456123433,
+"FY25": 0.04309639713062696,
+"FY26": 0.041820733829433104
+},
+"capex_pct": {
+"FY23": 0.027576154650255445,
+"FY24": 0.031793249758919964,
+"FY25": 0.034924410963530765,
+"FY26": 0.0373575185476532
+},
+"da_pct_capex": {
+"FY23": 0.6492851634335884,
+"FY24": 0.575220809472969,
+"FY25": 0.5454736576546273,
+"FY26": 0.5331056227009984
+},
+"tax_rate": {
+"FY23": 0.33638928067700985,
+"FY24": 0.25530941047235445,
+"FY25": 0.23383632977308144,
+"FY26": 0.24429061047202144
+},
+"nca_pct": {
+"FY23": 0.10965353539815047,
+"FY24": 0.10339054966248795,
+"FY25": 0.10341050096551319,
+"FY26": 0.10396921881813835
+},
+"ncl_pct": {
+"FY23": 0.14002378580344157,
+"FY24": 0.13250221793635486,
+"FY25": 0.13013355653942452,
+"FY26": 0.13299063467958938
+},
+"rev_growth": {
+"FY23": null,
+"FY24": 0.0602595499019285,
+"FY25": 0.05070009643201545,
+"FY26": 0.047252142117667706
+},
+"ni": {
+"FY23": 11680.0,
+"FY24": 15511.0,
+"FY25": 19436.0,
+"FY26": 21893.0
+},
+"eps": {
+"FY23": 1.42,
+"FY24": 1.9,
+"FY25": 2.41,
+"FY26": 2.74
+}
+},
+"quarterly": {
+"rev": {
+"1Q23": 141569.0,
+"2Q23": 152859.0,
+"3Q23": 152813.0,
+"4Q23": 164048.0,
+"1Q24": 152301.0,
+"2Q24": 161632.0,
+"3Q24": 160804.0,
+"4Q24": 173388.0,
+"1Q25": 161508.0,
+"2Q25": 169335.0,
+"3Q25": 169588.0,
+"4Q25": 180554.0,
+"1Q26": 165609.0,
+"2Q26": 177402.0,
+"3Q26": 179496.0,
+"4Q26": 190656.0,
+"1Q27": 177751.0,
+"2Q27": 187937.0,
+"3Q27": 188835.0
+},
+"ebitda": {
+"1Q23": 7998.0,
+"2Q23": 9553.0,
+"3Q23": 8750.0,
+"4Q23": 9172.0,
+"1Q24": 9085.0,
+"2Q24": 10221.0,
+"3Q24": 9188.0,
+"4Q24": 10371.0,
+"1Q25": 9969.0,
+"2Q25": 11151.0,
+"3Q25": 9968.0,
+"4Q25": 11233.0,
+"1Q26": 10504.0,
+"2Q26": 11173.0,
+"3Q26": 10302.0,
+"4Q26": 12449.0,
+"1Q27": 11314.0,
+"2Q27": 10408.0,
+"3Q27": 11787.0
+},
+"ebit": {
+"1Q23": 5318.0,
+"2Q23": 6854.0,
+"3Q23": 5995.0,
+"4Q23": 6361.0,
+"1Q24": 6240.0,
+"2Q24": 7316.0,
+"3Q24": 6202.0,
+"4Q24": 7254.0,
+"1Q25": 6841.0,
+"2Q25": 7940.0,
+"3Q25": 6708.0,
+"4Q25": 7859.0,
+"1Q26": 7135.0,
+"2Q26": 7686.0,
+"3Q26": 6696.0,
+"4Q26": 8708.0,
+"1Q27": 7493.0,
+"2Q27": 6483.0,
+"3Q27": 7770.0
+},
+"capex": {
+"1Q23": 3539.0,
+"2Q23": 3953.0,
+"3Q23": 4569.0,
+"4Q23": 4796.0,
+"1Q24": 4429.0,
+"2Q24": 4787.0,
+"3Q24": 5458.0,
+"4Q24": 5932.0,
+"1Q25": 4676.0,
+"2Q25": 5831.0,
+"3Q25": 6189.0,
+"4Q25": 7087.0,
+"1Q26": 4986.0,
+"2Q26": 6423.0,
+"3Q26": 7218.0,
+"4Q26": 8015.0,
+"1Q27": 6684.0,
+"2Q27": 7497.0,
+"3Q27": 8440.0
+},
+"fcf": {
+"1Q23": 2996.1375387797316,
+"2Q23": 7646.683624322697,
+"3Q23": 4918.631027253668,
+"4Q23": 9690.870478544148,
+"1Q24": 4038.4285714285706,
+"2Q24": 5332.285634380536,
+"3Q24": -6538.654644808743,
+"4Q24": 8448.61292897047,
+"1Q25": 3449.6520255863543,
+"2Q25": 5287.495734749718,
+"3Q25": -1787.4453919317803,
+"4Q25": 4060.089903777107,
+"1Q26": 5675.066232899566,
+"2Q26": 3701.905998497692,
+"3Q26": -304.1260688981183,
+"4Q26": 3793.287437185929,
+"1Q27": 2030.9762171236707,
+"2Q27": 3788.0138542186723,
+"3Q27": -2044.870996441281
+},
+"ebitda_margin": {
+"1Q23": 0.056495419194880235,
+"2Q23": 0.062495502391092445,
+"3Q23": 0.05725952634919804,
+"4Q23": 0.05591046522968887,
+"1Q24": 0.05965161095462276,
+"2Q24": 0.06323624034844585,
+"3Q24": 0.057137882142235266,
+"4Q24": 0.0598138279465707,
+"1Q25": 0.06172449661936251,
+"2Q25": 0.0658517140579325,
+"3Q25": 0.058777743708281247,
+"4Q25": 0.062214074459718424,
+"1Q26": 0.06342650459818006,
+"2Q26": 0.06298125162061308,
+"3Q26": 0.05739403663591389,
+"4Q26": 0.06529561094326955,
+"1Q27": 0.06365083740738449,
+"2Q27": 0.055380260406412786,
+"3Q27": 0.06241957264278338
+},
+"ebit_margin": {
+"1Q23": 0.037564721090069156,
+"2Q23": 0.04483870756710433,
+"3Q23": 0.03923095548153626,
+"4Q23": 0.03877523651614162,
+"1Q24": 0.040971497232454156,
+"2Q24": 0.04526331419520887,
+"3Q24": 0.03856869232108654,
+"4Q24": 0.04183680531524673,
+"1Q25": 0.04235703494563737,
+"2Q25": 0.04688930227064694,
+"3Q25": 0.039554685473028754,
+"4Q25": 0.04352714423385801,
+"1Q26": 0.04308340730274321,
+"2Q26": 0.04332532891399195,
+"3Q26": 0.03730445246690734,
+"4Q26": 0.04567388385364216,
+"1Q27": 0.04215447451772423,
+"2Q27": 0.034495602249690054,
+"3Q27": 0.04114703312415601
+},
+"capex_pct": {
+"1Q23": 0.024998410669002394,
+"2Q23": 0.02586043347136904,
+"3Q23": 0.029899288673084095,
+"4Q23": 0.029235345752462692,
+"1Q24": 0.029080570711945423,
+"2Q24": 0.029616660067313404,
+"3Q24": 0.03394194174274272,
+"4Q24": 0.03421228689413339,
+"1Q25": 0.028952126210466354,
+"2Q25": 0.034434700445861756,
+"3Q25": 0.03649432742882751,
+"4Q25": 0.039251415089114616,
+"1Q26": 0.03010705939894571,
+"2Q26": 0.03620590523218453,
+"3Q26": 0.04021259526674689,
+"4Q26": 0.04203906512252434,
+"1Q27": 0.03760316397657397,
+"2Q27": 0.03989102731234403,
+"3Q27": 0.04469510419148993
+},
+"tax_rate": {
+"1Q23": 0.2750775594622544,
+"2Q23": 0.225316074653823,
+"3Q23": -0.2348008385744235,
+"4Q23": 0.34745001123343067,
+"1Q24": 0.29464285714285715,
+"2Q24": 0.24927752400484757,
+"3Q24": 0.2972677595628415,
+"4Q24": 0.24474594306996542,
+"1Q25": 0.24562899786780384,
+"2Q25": 0.24175116690809592,
+"3Q25": 0.22695965890455888,
+"4Q25": 0.22088180382019246,
+"1Q26": 0.2260593927260594,
+"2Q26": 0.23264298744500483,
+"3Q26": 0.2562912289274371,
+"4Q26": 0.264321608040201,
+"1Q27": 0.23195299384443202,
+"2Q27": 0.18509735396904642,
+"3Q27": 0.24451364175563464
+},
+"nca_pct": {
+"1Q23": 0.5043688943200842,
+"2Q23": 0.45951497785540923,
+"3Q23": 0.4979484729702316,
+"4Q23": 0.40859992197405637,
+"1Q24": 0.446064044228206,
+"2Q24": 0.42159968323104335,
+"3Q24": 0.47409890301236285,
+"4Q24": 0.38647426580847577,
+"1Q25": 0.419465289645095,
+"2Q25": 0.3997933091209732,
+"3Q25": 0.4533870321013279,
+"4Q25": 0.39002736023571893,
+"1Q26": 0.42837043880465436,
+"2Q26": 0.40925130494582923,
+"3Q26": 0.4587177430137719,
+"4Q26": 0.38890462403491105,
+"1Q27": 0.4369314377978183,
+"2Q27": 0.41063760728329174,
+"3Q27": 0.46606826065083273
+},
+"ncl_pct": {
+"1Q23": 0.56171902040701,
+"2Q23": 0.536121523757188,
+"3Q23": 0.5701936353582483,
+"4Q23": 0.5217680191163562,
+"1Q24": 0.5759778333694461,
+"2Q24": 0.5546673925955257,
+"3Q24": 0.5554588194323524,
+"4Q24": 0.49529379195792095,
+"1Q25": 0.535279986130718,
+"2Q25": 0.5213984114329583,
+"3Q25": 0.5509646908979409,
+"4Q25": 0.4908171516554604,
+"1Q26": 0.5489435960606006,
+"2Q26": 0.5259805413693194,
+"3Q26": 0.5647702455765031,
+"4Q26": 0.49746139644175896,
+"1Q27": 0.5485257466905953,
+"2Q27": 0.5272351905159708,
+"3Q27": 0.5636190324886806
+},
+"rev_yoy": {
+"1Q23": null,
+"2Q23": null,
+"3Q23": null,
+"4Q23": null,
+"1Q24": 0.07580755673911654,
+"2Q24": 0.05739276064870236,
+"3Q24": 0.05229267143502181,
+"4Q24": 0.056934555739783566,
+"1Q25": 0.06045265625307783,
+"2Q25": 0.04765764205107903,
+"3Q25": 0.05462550682818845,
+"4Q25": 0.041329273075414674,
+"1Q26": 0.025391931049855154,
+"2Q26": 0.047639294888829786,
+"3Q26": 0.058423945090454454,
+"4Q26": 0.05595002049248432,
+"1Q27": 0.07331727140433197,
+"2Q27": 0.05938489983201989,
+"3Q27": 0.052029014574140886
+},
+"ebit_yoy": {
+"1Q23": null,
+"2Q23": null,
+"3Q23": null,
+"4Q23": null,
+"1Q24": 0.17337344866491167,
+"2Q24": 0.06740589436825206,
+"3Q24": 0.03452877397831533,
+"4Q24": 0.1403867316459677,
+"1Q25": 0.09631410256410255,
+"2Q25": 0.08529250956806989,
+"3Q25": 0.08158658497258942,
+"4Q25": 0.08340226082161561,
+"1Q26": 0.042976173074112056,
+"2Q26": -0.03198992443324933,
+"3Q26": -0.0017889087656529634,
+"4Q26": 0.10802901132459608,
+"1Q27": 0.05017519271198312,
+"2Q27": -0.15651834504293516,
+"3Q27": 0.16039426523297484
+},
+"nwc": {
+"1Q23": -8119.0,
+"2Q23": -11710.0,
+"3Q23": -11040.0,
+"4Q23": -18565.0,
+"1Q24": -19786.0,
+"2Q24": -21508.0,
+"3Q24": -13083.0,
+"4Q24": -18868.0,
+"1Q25": -18705.0,
+"2Q25": -20592.0,
+"3Q25": -16548.0,
+"4Q25": -18198.0,
+"1Q26": -19968.0,
+"2Q26": -20708.0,
+"3Q26": -19036.0,
+"4Q26": -20697.0,
+"1Q27": -19836.0,
+"2Q27": -21913.0,
+"3Q27": -18421.0
+}
+},
+"ltm": {
+"rev": 745179.0,
+"ebitda": 45958.0,
+"ebit": 30454.0,
+"da": 15504.0,
+"capex": 30636.0,
+"ni": 20878.0,
+"fcf": 7567.406512086991,
+"nopat": 23314.406512086993,
+"period": "4Q26–3Q27"
+},
+"market": {
+"price": 126.04,
+"price_date": "2026-11-19",
+"shares_m": 7934.0,
+"mcap": 1000001.3600000001,
+"cash": 13432.0,
+"total_debt": 81152.0,
+"nci": 6245.0,
+"pref": 0.0,
+"tev": 1073966.36,
+"book_equity": 100223.0,
+"net_debt": 67720.0,
+"balance_date": "2026-10-31 (3Q27)",
+"capiq_ref": {
+"price": 128.41,
+"price_date": "2026-11-17",
+"tev": 1088896.354806
+},
+"last_close": 126.04,
+"last_close_date": "2026-11-19",
+"high_52w": 134.2,
+"low_52w": 100.61
+},
+"consensus": {
+"FY27E": {
+"rev": 752840.36121,
+"ebitda": 49215.07137,
+"ebit": 33690.35268,
+"ni": 23097.34633,
+"eps": 2.88679
+},
+"FY28E": {
+"rev": 785009.16268,
+"ebitda": 53397.48078,
+"ebit": 36846.27083,
+"ni": 25607.06432,
+"eps": 3.2283
+}
+},
+"own_multiples": {
+"pe_ntm_avg": 31.743250266666667,
+"pe_ntm_min": 22.817828,
+"pe_ntm_max": 42.483259,
+"pe_ntm_p25": 24.545977999999998,
+"pe_ntm_p75": 36.7789345,
+"ev_ntm_avg": 16.291638,
+"ev_ntm_min": 12.143957,
+"ev_ntm_max": 21.512445
+},
+"mult_series": [
+{
+"d": "2023-03-31",
+"pe": 22.817828,
+"ev": 12.143957
+},
+{
+"d": "2023-06-30",
+"pe": 24.305587,
+"ev": 12.521061
+},
+{
+"d": "2023-09-29",
+"pe": 24.392329,
+"ev": 12.643055
+},
+{
+"d": "2023-12-29",
+"pe": 23.37762,
+"ev": 12.30132
+},
+{
+"d": "2024-03-28",
+"pe": 24.699627,
+"ev": 12.96772
+},
+{
+"d": "2024-06-28",
+"pe": 26.101092,
+"ev": 13.553719
+},
+{
+"d": "2024-09-30",
+"pe": 29.162961,
+"ev": 15.055071
+},
+{
+"d": "2024-12-31",
+"pe": 33.35276,
+"ev": 17.069455
+},
+{
+"d": "2025-03-31",
+"pe": 35.404517,
+"ev": 18.048787
+},
+{
+"d": "2025-06-30",
+"pe": 36.033732,
+"ev": 18.253336
+},
+{
+"d": "2025-09-30",
+"pe": 36.809653,
+"ev": 18.718687
+},
+{
+"d": "2025-12-31",
+"pe": 38.295445,
+"ev": 19.514211
+},
+{
+"d": "2026-03-31",
+"pe": 42.483259,
+"ev": 21.512445
+},
+{
+"d": "2026-06-30",
+"pe": 42.164128,
+"ev": 21.332143
+},
+{
+"d": "2026-09-30",
+"pe": 36.748216,
+"ev": 18.739603
+},
+{
+"d": "2026-11-17",
+"pe": null,
+"ev": null
+}
+],
+"peers": {
+"COST": {
+"group": "core",
+"beta_capiq": 0.85,
+"beta_reg": 0.7899162302123285,
+"unlev": 0.7005875191870005,
+"rev_g": 10.14,
+"ebitda_m": 4.7,
+"ebit_m": 3.8
+},
+"TGT": {
+"group": "core",
+"beta_capiq": 0.93,
+"beta_reg": 0.8573323491774829,
+"unlev": 0.5146692707585376,
+"rev_g": 1.95,
+"ebitda_m": 8.0,
+"ebit_m": 5.0
+},
+"DG": {
+"group": "extended",
+"beta_capiq": 0.19,
+"beta_reg": 0.17847603021468847,
+"unlev": 0.08356257046223227,
+"rev_g": 4.77,
+"ebitda_m": 8.2,
+"ebit_m": 5.7
+},
+"BJ": {
+"group": "core",
+"beta_capiq": 0.14,
+"beta_reg": 0.122774607238921,
+"unlev": 0.07192585921385201,
+"rev_g": 9.09,
+"ebitda_m": 5.1,
+"ebit_m": 3.8
+},
+"DLTR": {
+"group": "extended",
+"beta_capiq": 0.69,
+"beta_reg": 0.6418683078290657,
+"unlev": 0.25750657357874696,
+"rev_g": 8.18,
+"ebitda_m": 12.5,
+"ebit_m": 9.0
+},
+"KR": {
+"group": "core",
+"beta_capiq": 0.36,
+"beta_reg": 0.3412246131099618,
+"unlev": 0.08780267935395021,
+"rev_g": 1.58,
+"ebitda_m": 5.4,
+"ebit_m": 3.2
+},
+"PSMT": {
+"group": "extended",
+"beta_capiq": 0.81,
+"beta_reg": 0.7904286793449176,
+"unlev": 0.6830472983637608,
+"rev_g": 11.5,
+"ebitda_m": 6.2,
+"ebit_m": 4.5
+},
+"CASY": {
+"group": "extended",
+"beta_capiq": 0.59,
+"beta_reg": 0.578102957639957,
+"unlev": 0.3858204835066782,
+"rev_g": 13.78,
+"ebitda_m": 8.4,
+"ebit_m": 5.9
+},
+"WMT": {
+"group": "subject",
+"beta_capiq": 0.53,
+"beta_reg": 0.5083360842437853,
+"unlev": 0.34475297270139005,
+"rev_g": 6.16,
+"ebitda_m": 6.0,
+"ebit_m": 3.9
+}
+},
+"betas": {
+"m5y": {
+"beta": 0.5083360842437853,
+"se": 0.168860349822349,
+"r2": 0.13513472864574438,
+"n": 60
+},
+"w2y": {
+"beta": 0.4730726640459837,
+"se": 0.16291829634257118,
+"r2": 0.07635230722730219,
+"n": 104
+},
+"d1y": {
+"beta": 0.0024433281407867753,
+"se": 0.141067902312901,
+"r2": 1.5463392360810078e-06,
+"n": 196
+}
+},
+"rec": {
+"rev_growth": {
+"label": "Revenue growth (FY27E→FY31E)",
+"history_cagr_3y": 0.05272290929168877,
+"ltm_yoy": 0.05990660838817674,
+"consensus": {
+"FY27E": 0.055635753972093305,
+"FY28E": 0.04272991078519861
+},
+"guidance_fy27": "+4.9–5.2% cc (19-Nov-26)",
+"peer_median_ltm": 0.0552,
+"recommended": [
+0.05,
+0.043,
+0.04,
+0.038,
+0.035
+],
+"rationale_en": "Fade from the FY27 guide (+4.9–5.2% cc) toward the 3-yr CAGR floor (~5.3%) less inflation normalisation; e-commerce (+17–23%) and advertising (+25%) keep growth above the core-peer median (5.5%) while store growth is <1%/yr.",
+"rationale_ko": "FY27 가이던스(+4.9~5.2% cc)에서 출발해 3년 CAGR(~5.3%)에서 인플레이션 정상화분을 뺀 수준으로 점진 둔화. 이커머스(+17~23%)·광고(+25%)가 핵심 피어 중앙값(5.5%)보다 높은 성장을 유지하되 점포 증가는 연 1% 미만."
+},
+"ebitda_margin": {
+"label": "EBITDA margin",
+"history_mean": 0.06046952503183445,
+"last": 0.06173623701734386,
+"ltm": 0.06167377234194737,
+"consensus": {
+"FY27E": 0.06537251973432887,
+"FY28E": 0.06802147454903895
+},
+"peer_median_ltm": 0.0525,
+"recommended": [
+0.0645,
+0.066,
+0.0675,
+0.0685,
+0.0695
+],
+"rationale_en": "Mix shift (advertising, membership, marketplace) adds ~10–15bp/yr; consensus already embeds 6.5% (FY27E) → 6.8% (FY28E). Recommendation sits at/just below consensus to allow for price reinvestment (rollbacks) and wage inflation.",
+"rationale_ko": "광고·멤버십·마켓플레이스 믹스 전환으로 연 10~15bp 개선; 컨센서스는 이미 6.5%(FY27E)→6.8%(FY28E) 반영. 롤백 가격 재투자·임금 인플레이션을 감안해 컨센서스와 같거나 약간 낮게 추천."
+},
+"capex_pct": {
+"label": "Capex % revenue",
+"history_mean": 0.032912833480089845,
+"last": 0.0373575185476532,
+"ltm": 0.04111226966943513,
+"guidance_fy27": 0.04,
+"recommended": [
+0.04,
+0.04,
+0.038,
+0.036,
+0.035
+],
+"rationale_en": "Guidance 4.0% for FY27 (Symbotic 25-DC automation, remodels, delivery density); step down toward the 3.5% long-run level once the automation programme is built out (FY29E+).",
+"rationale_ko": "FY27 가이던스 4.0%(Symbotic 25개 DC 자동화, 리모델, 배송 밀도); 자동화 프로그램 완성 후(FY29E~) 장기 평균 3.5%로 하향."
+},
+"da_pct_capex": {
+"label": "D&A % capex",
+"history_mean": 0.5757713133155458,
+"last": 0.5331056227009984,
+"recommended": [
+0.55,
+0.57,
+0.6,
+0.63,
+0.66
+],
+"rationale_en": "D&A lags capex; ratio fell from 65% (FY23) to 53% (FY26) during the investment cycle and should recover as capex intensity normalises.",
+"rationale_ko": "D&A는 Capex에 후행; 투자 사이클 중 65%(FY23)→53%(FY26)로 하락했고 Capex 강도 정상화와 함께 회복 예상."
+},
+"tax_rate": {
+"label": "Effective tax rate",
+"history_mean": 0.2674564078486168,
+"last": 0.24429061047202144,
+"guidance_fy27": "23.5–24.5%",
+"recommended": [
+0.24,
+0.24,
+0.24,
+0.24,
+0.24
+],
+"rationale_en": "FY23 (33.6%) distorted by opioid settlement non-deductibility; FY24–FY26 23–26%; guidance 23.5–24.5%.",
+"rationale_ko": "FY23(33.6%)는 오피오이드 합의금 비공제로 왜곡; FY24~26 23~26%; 가이던스 23.5~24.5%."
+},
+"nca_pct": {
+"label": "Net current assets % revenue",
+"history_mean": 0.1051059512110725,
+"last": 0.10396921881813835,
+"recommended": [
+0.1051059512110725,
+0.1051059512110725,
+0.1051059512110725,
+0.1051059512110725,
+0.1051059512110725
+],
+"rationale_en": "Stable at ~10% of revenue; inventory growth (3Q27 +8%) running ahead of sales is the watch item.",
+"rationale_ko": "매출의 ~10%로 안정적; 재고 증가(3Q27 +8%)가 매출보다 빠른 점이 관찰 포인트."
+},
+"ncl_pct": {
+"label": "Net current liabilities % revenue",
+"history_mean": 0.1339125487397026,
+"last": 0.13299063467958938,
+"recommended": [
+0.1339125487397026,
+0.1339125487397026,
+0.1339125487397026,
+0.1339125487397026,
+0.1339125487397026
+],
+"rationale_en": "Supplier-financed model: payables + accruals ~13% of revenue; held at the 4-yr mean.",
+"rationale_ko": "공급업체 금융 모델: 매입채무+미지급 ~13%; 4년 평균 유지."
+},
+"terminal_growth": {
+"label": "Terminal growth",
+"recommended": 0.03,
+"range": [
+0.025,
+0.035
+],
+"rationale_en": "Nominal GDP-type growth; below the 3-yr revenue CAGR (5.3%) and consensus FY28E (+4.3%).",
+"rationale_ko": "명목 GDP 수준; 3년 매출 CAGR(5.3%)·컨센 FY28E(+4.3%)보다 낮게."
+},
+"beta": {
+"label": "Equity beta",
+"regression_5y_monthly": {
+"beta": 0.5083360842437853,
+"se": 0.168860349822349,
+"r2": 0.13513472864574438,
+"n": 60
+},
+"regression_2y_weekly": {
+"beta": 0.4730726640459837,
+"se": 0.16291829634257118,
+"r2": 0.07635230722730219,
+"n": 104
+},
+"capiq_5y": 0.53,
+"blume_adjusted": 0.6722240561625235,
+"peer_unlevered_median": 0.30123597505624394,
+"relevered_from_peers": 0.3195703765072812,
+"recommended": 0.67,
+"rationale_en": "Regression beta 0.51 (R² 0.14, SE 0.17) ≈ CapIQ 0.53; Blume adjustment (⅓·1 + ⅔·β) gives 0.67, which we adopt because low-R² betas mean-revert and CFA-style practice uses it. Peer-relevered beta (~0.5) is the lower bound.",
+"rationale_ko": "회귀 베타 0.51(R² 0.14, 표준오차 0.17) ≈ CapIQ 0.53; Blume 조정(⅓·1+⅔·β) 0.67을 채택 — 낮은 R²의 베타는 평균회귀하며 CFA 실무 관행. 피어 리레버 베타(~0.5)는 하한."
+},
+"cost_of_debt": {
+"label": "Pre-tax cost of debt",
+"recommended": 0.045,
+"rationale_en": "Weighted coupon of outstanding notes ~4.0%; new 2026 issues priced 4.9–5.75% (WMT29B 4.875%, WMT30B 5.75%); AA rating.",
+"rationale_ko": "기발행 채권 가중 쿠폰 ~4.0%; 2026년 신규 발행 4.9~5.75%(WMT29B 4.875%, WMT30B 5.75%); AA 등급."
+},
+"risk_free": {
+"label": "Risk-free rate",
+"recommended": 0.0395,
+"rationale_en": "1-month T-bill 3.95% (class convention); 10-yr Treasury ~4.1% as sensitivity.",
+"rationale_ko": "1개월 T-bill 3.95%(수업 기준); 10년물 ~4.1%는 민감도."
+},
+"mrp": {
+"label": "Market risk premium",
+"recommended": 0.055,
+"rationale_en": "5.5% (class assumption; Damodaran implied ERP 4.3–5.5%).",
+"rationale_ko": "5.5%(수업 가정; Damodaran 내재 ERP 4.3~5.5%)."
+}
+},
+"anomalies": [
+{
+"quarter": "1Q24",
+"metric": "Revenue y/y",
+"value": 0.07580755673911654,
+"z": 1.8275033531446996,
+"mean": 0.05457526667350005,
+"events": [
+{
+"tag": "demand",
+"en": "Revenue +7.6% y/y: grocery share gains from higher-income households, food inflation still ~mid-single digit, e-commerce +26%",
+"ko": "매출 +7.6% y/y: 고소득층 식료품 점유율 확대, 식품 인플레이션 중단일자릿수, 이커머스 +26%"
+}
+]
+},
+{
+"quarter": "1Q26",
+"metric": "Revenue y/y",
+"value": 0.025391931049855154,
+"z": -2.511864878604166,
+"mean": 0.05457526667350005,
+"events": [
+{
+"tag": "demand",
+"en": "Revenue +2.5% y/y (slowest since FY21): lapping leap day and calendar shift, tariff uncertainty, FX headwind on International; EPS miss first in years",
+"ko": "매출 +2.5% y/y(FY21 이후 최저): 윤일·캘린더 효과 역기저, 관세 불확실성, 해외 FX 역풍; 수년 만의 EPS 미스"
+}
+]
+},
+{
+"quarter": "1Q27",
+"metric": "Revenue y/y",
+"value": 0.07331727140433197,
+"z": 1.6131597856095257,
+"mean": 0.05457526667350005,
+"events": [
+{
+"tag": "corporate",
+"en": "First quarter under CEO John Furner; membership & other income +27% to $2.1bn",
+"ko": "John Furner CEO 첫 분기; 멤버십·기타수익 +27%($21억)"
+}
+]
+},
+{
+"quarter": "2Q26",
+"metric": "EBIT margin vs same-quarter history",
+"value": 0.04332532891399195,
+"z": -2.64606023178143,
+"mean": 0.04566377467765338,
+"events": [
+{
+"tag": "one-off",
+"en": "$400m legal settlement (CapIQ reclassifies to unusual items: EBIT 7,686 vs reported 7,286); tariff cost absorption begins",
+"ko": "법적 합의금 $4억(CapIQ는 비경상 항목으로 재분류: EBIT 7,686 vs 공시 7,286), 관세 비용 흡수 시작"
+}
+]
+},
+{
+"quarter": "2Q27",
+"metric": "EBIT y/y",
+"value": -0.15651834504293516,
+"z": -2.7510012296513633,
+"mean": 0.06223785137904352,
+"events": [
+{
+"tag": "one-off",
+"en": "~$2.9bn tariff refund booked in cost of sales (CapIQ reclassifies to unusual: EBIT 6,483 vs reported 9,383); $1.2bn investment loss; U.S. comp +2.6% miss (H&W -125bp); capex guide raised to 4.0%; stock -9%",
+"ko": "관세환급 ~$29억 매출원가 반영(CapIQ는 비경상 재분류: EBIT 6,483 vs 공시 9,383); 투자손실 $12억; 미국 동일점포 +2.6% 미스(H&W -125bp); Capex 가이던스 4.0%로 상향; 주가 -9%"
+}
+]
+},
+{
+"quarter": "2Q27",
+"metric": "EBITDA y/y",
+"value": -0.06846862973239054,
+"z": -2.6617457970926215,
+"mean": 0.07287389624970872,
+"events": [
+{
+"tag": "one-off",
+"en": "~$2.9bn tariff refund booked in cost of sales (CapIQ reclassifies to unusual: EBIT 6,483 vs reported 9,383); $1.2bn investment loss; U.S. comp +2.6% miss (H&W -125bp); capex guide raised to 4.0%; stock -9%",
+"ko": "관세환급 ~$29억 매출원가 반영(CapIQ는 비경상 재분류: EBIT 6,483 vs 공시 9,383); 투자손실 $12억; 미국 동일점포 +2.6% 미스(H&W -125bp); Capex 가이던스 4.0%로 상향; 주가 -9%"
+}
+]
+},
+{
+"quarter": "2Q27",
+"metric": "EBIT margin vs same-quarter history",
+"value": 0.034495602249690054,
+"z": -8.338251563671529,
+"mean": 0.045079163236738024,
+"events": [
+{
+"tag": "one-off",
+"en": "~$2.9bn tariff refund booked in cost of sales (CapIQ reclassifies to unusual: EBIT 6,483 vs reported 9,383); $1.2bn investment loss; U.S. comp +2.6% miss (H&W -125bp); capex guide raised to 4.0%; stock -9%",
+"ko": "관세환급 ~$29억 매출원가 반영(CapIQ는 비경상 재분류: EBIT 6,483 vs 공시 9,383); 투자손실 $12억; 미국 동일점포 +2.6% 미스(H&W -125bp); Capex 가이던스 4.0%로 상향; 주가 -9%"
+}
+]
+},
+{
+"quarter": "3Q26",
+"metric": "EBIT margin vs same-quarter history",
+"value": 0.03730445246690734,
+"z": -4.419650494277709,
+"mean": 0.03911811109188385,
+"events": [
+{
+"tag": "non-operating",
+"en": "$2.1bn gain on equity investments below EBIT; CEO succession announced (Furner from Feb-2026); 7th straight quarter of e-commerce >20%",
+"ko": "지분투자 평가이익 $21억(영업외), CEO 교체 발표(2026.2 Furner), 7분기 연속 이커머스 >20%"
+}
+]
+},
+{
+"quarter": "3Q27",
+"metric": "EBIT margin vs same-quarter history",
+"value": 0.04114703312415601,
+"z": 2.879724351395596,
+"mean": 0.038664696435639724,
+"events": [
+{
+"tag": "capex",
+"en": "Symbotic $6bn automation expansion (25 DCs, 30-Oct); $3bn 4-tranche bond (20-Oct); Flipkart BBD timing shifts Intl growth; FY27 guide raised (adj. EPS $2.84-2.89); inventory $70.6bn (+8%)",
+"ko": "Symbotic $60억 자동화 확대(25개 DC, 10/30); $30억 4트랜치 채권(10/20); Flipkart BBD 시점 이동으로 해외 성장 왜곡; FY27 가이던스 상향(조정 EPS $2.84-2.89); 재고 $706억(+8%)"
+}
+]
+},
+{
+"quarter": "4Q26",
+"metric": "EBIT margin vs same-quarter history",
+"value": 0.04567388385364216,
+"z": 2.183434978586986,
+"mean": 0.041379728688415454,
+"events": [
+{
+"tag": "seasonal",
+"en": "Holiday quarter: revenue $190.7bn, EBIT $8.7bn; FY26 advertising $6.4bn; capex 3.7% of sales",
+"ko": "연말 성수기: 매출 $1,907억, EBIT $87억; FY26 광고 $64억; Capex 매출의 3.7%"
+}
+]
+}
+],
+"events": {
+"1Q23": [
+{
+"tag": "inventory",
+"en": "Inventory +33% y/y to $61.2bn; markdowns and fuel/wage cost surge; profit warning (May-2022)",
+"ko": "재고 +33% y/y($612억), 마크다운·연료·인건비 급등, 이익 경고(2022.5)"
+}
+],
+"2Q23": [
+{
+"tag": "inventory",
+"en": "Inventory glut persists ($59.9bn, +25%); general-merchandise markdowns compress gross margin",
+"ko": "재고 과잉 지속($599억, +25%), 일반상품 마크다운으로 매출총이익률 압박"
+}
+],
+"4Q23": [
+{
+"tag": "one-off",
+"en": "Opioid settlement charge ($3.3bn) and Flipkart/PhonePe reorganisation hit EBIT and lift effective tax rate (FY23 33.6%)",
+"ko": "오피오이드 합의금($33억)·Flipkart/PhonePe 재편 비용으로 EBIT 감소, FY23 유효세율 33.6%로 상승"
+}
+],
+"1Q24": [
+{
+"tag": "demand",
+"en": "Revenue +7.6% y/y: grocery share gains from higher-income households, food inflation still ~mid-single digit, e-commerce +26%",
+"ko": "매출 +7.6% y/y: 고소득층 식료품 점유율 확대, 식품 인플레이션 중단일자릿수, 이커머스 +26%"
+}
+],
+"1Q25": [
+{
+"tag": "margin",
+"en": "EBIT margin 4.2%: advertising +24% and membership income lift mix; inventory -2.7% y/y",
+"ko": "EBIT 마진 4.2%: 광고 +24%·멤버십 수익으로 믹스 개선; 재고 -2.7% y/y"
+}
+],
+"2Q25": [
+{
+"tag": "margin",
+"en": "EBIT margin 4.7% (record 2Q): Walmart Connect +30%, gross margin +43bp, e-commerce losses narrowing; raised FY25 guide",
+"ko": "EBIT 마진 4.7%(2Q 최고): Walmart Connect +30%, GM +43bp, 이커머스 손실 축소; FY25 가이던스 상향"
+}
+],
+"3Q25": [
+{
+"tag": "margin",
+"en": "EBIT margin 4.0%: 3rd straight guidance raise; advertising +28%; VIZIO deal pending",
+"ko": "EBIT 마진 4.0%: 3회 연속 가이던스 상향; 광고 +28%; VIZIO 인수 대기"
+}
+],
+"1Q26": [
+{
+"tag": "demand",
+"en": "Revenue +2.5% y/y (slowest since FY21): lapping leap day and calendar shift, tariff uncertainty, FX headwind on International; EPS miss first in years",
+"ko": "매출 +2.5% y/y(FY21 이후 최저): 윤일·캘린더 효과 역기저, 관세 불확실성, 해외 FX 역풍; 수년 만의 EPS 미스"
+}
+],
+"4Q24": [
+{
+"tag": "corporate",
+"en": "3-for-1 stock split (Feb-2024); VIZIO acquisition announced ($2.3bn); FY24 e-commerce $100bn+",
+"ko": "3:1 액면분할(2024.2), VIZIO 인수 발표($23억), FY24 이커머스 $1,000억 돌파"
+}
+],
+"4Q25": [
+{
+"tag": "corporate",
+"en": "VIZIO acquisition closed (Dec-2024); advertising revenue FY25 $4.4bn (+27%)",
+"ko": "VIZIO 인수 완료(2024.12), FY25 광고 매출 $44억(+27%)"
+}
+],
+"2Q26": [
+{
+"tag": "one-off",
+"en": "$400m legal settlement (CapIQ reclassifies to unusual items: EBIT 7,686 vs reported 7,286); tariff cost absorption begins",
+"ko": "법적 합의금 $4억(CapIQ는 비경상 항목으로 재분류: EBIT 7,686 vs 공시 7,286), 관세 비용 흡수 시작"
+}
+],
+"3Q26": [
+{
+"tag": "non-operating",
+"en": "$2.1bn gain on equity investments below EBIT; CEO succession announced (Furner from Feb-2026); 7th straight quarter of e-commerce >20%",
+"ko": "지분투자 평가이익 $21억(영업외), CEO 교체 발표(2026.2 Furner), 7분기 연속 이커머스 >20%"
+}
+],
+"4Q26": [
+{
+"tag": "seasonal",
+"en": "Holiday quarter: revenue $190.7bn, EBIT $8.7bn; FY26 advertising $6.4bn; capex 3.7% of sales",
+"ko": "연말 성수기: 매출 $1,907억, EBIT $87억; FY26 광고 $64억; Capex 매출의 3.7%"
+}
+],
+"1Q27": [
+{
+"tag": "corporate",
+"en": "First quarter under CEO John Furner; membership & other income +27% to $2.1bn",
+"ko": "John Furner CEO 첫 분기; 멤버십·기타수익 +27%($21억)"
+}
+],
+"2Q27": [
+{
+"tag": "one-off",
+"en": "~$2.9bn tariff refund booked in cost of sales (CapIQ reclassifies to unusual: EBIT 6,483 vs reported 9,383); $1.2bn investment loss; U.S. comp +2.6% miss (H&W -125bp); capex guide raised to 4.0%; stock -9%",
+"ko": "관세환급 ~$29억 매출원가 반영(CapIQ는 비경상 재분류: EBIT 6,483 vs 공시 9,383); 투자손실 $12억; 미국 동일점포 +2.6% 미스(H&W -125bp); Capex 가이던스 4.0%로 상향; 주가 -9%"
+}
+],
+"3Q27": [
+{
+"tag": "capex",
+"en": "Symbotic $6bn automation expansion (25 DCs, 30-Oct); $3bn 4-tranche bond (20-Oct); Flipkart BBD timing shifts Intl growth; FY27 guide raised (adj. EPS $2.84-2.89); inventory $70.6bn (+8%)",
+"ko": "Symbotic $60억 자동화 확대(25개 DC, 10/30); $30억 4트랜치 채권(10/20); Flipkart BBD 시점 이동으로 해외 성장 왜곡; FY27 가이던스 상향(조정 EPS $2.84-2.89); 재고 $706억(+8%)"
+}
+]
+},
+"seasonality": {
+"rev": {
+"1Q (Feb-Apr)": 0.23399096172840755,
+"2Q (May-Jul)": 0.24921494178920672,
+"3Q (Aug-Oct)": 0.2497036802004651,
+"4Q (Nov-Jan, holiday)": 0.2670904162819206
+},
+"ebit": {
+"1Q (Feb-Apr)": 0.22924602491934776,
+"2Q (May-Jul)": 0.26877942106507036,
+"3Q (Aug-Oct)": 0.2310305502789462,
+"4Q (Nov-Jan, holiday)": 0.2709440037366357
+},
+"capex": {
+"1Q (Feb-Apr)": 0.20215974767481562,
+"2Q (May-Jul)": 0.23826839846770967,
+"3Q (Aug-Oct)": 0.26676811959585733,
+"4Q (Nov-Jan, holiday)": 0.2928037342616174
+}
+},
+"drivers": {
+"rev": {
+"cagr_3y": 0.05272290929168877,
+"mean": null
+},
+"ebitda": {
+"cagr_3y": 0.07467467063695277,
+"mean": null
+},
+"ebit": {
+"cagr_3y": 0.06734815803286076,
+"mean": null
+},
+"da": {
+"cagr_3y": 0.09074050319356353,
+"mean": null
+},
+"capex": {
+"cagr_3y": 0.16482901232620284,
+"mean": null
+},
+"fcf": {
+"cagr_3y": 0.0672234345040228,
+"mean": null
+},
+"ni": {
+"cagr_3y": 0.23297464200402307,
+"mean": null
+},
+"ebitda_margin": {
+"cagr_3y": null,
+"mean": 0.06046952503183445
+},
+"ebit_margin": {
+"cagr_3y": null,
+"mean": 0.04167983095216333
+},
+"gm": {
+"cagr_3y": null,
+"mean": 0.24573403876548044
+},
+"tax_rate": {
+"cagr_3y": null,
+"mean": 0.2674564078486168
+},
+"capex_pct": {
+"cagr_3y": null,
+"mean": 0.032912833480089845
+},
+"da_pct_capex": {
+"cagr_3y": null,
+"mean": 0.5757713133155458
+},
+"nca_pct": {
+"cagr_3y": null,
+"mean": 0.1051059512110725
+},
+"ncl_pct": {
+"cagr_3y": null,
+"mean": 0.1339125487397026
+}
+},
+"base_fy26": {
+"rev": 713163.0,
+"nwc": -20697.0,
+"fcf": 12599.032542671957
+},
+"assumptions": {
+"rev_growth": [
+0.05,
+0.043,
+0.04,
+0.038,
+0.035
+],
+"ebitda_margin": [
+0.0645,
+0.066,
+0.0675,
+0.0685,
+0.0695
+],
+"capex_pct": [
+0.04,
+0.04,
+0.038,
+0.036,
+0.035
+],
+"da_pct_capex": [
+0.55,
+0.57,
+0.6,
+0.63,
+0.66
+],
+"tax_rate": [
+0.24,
+0.24,
+0.24,
+0.24,
+0.24
+],
+"nca_pct": [
+0.1051059512110725,
+0.1051059512110725,
+0.1051059512110725,
+0.1051059512110725,
+0.1051059512110725
+],
+"ncl_pct": [
+0.1339125487397026,
+0.1339125487397026,
+0.1339125487397026,
+0.1339125487397026,
+0.1339125487397026
+],
+"terminal_growth": 0.03,
+"beta_choice": "blume",
+"beta_override": null,
+"risk_free": 0.0395,
+"mrp": 0.055,
+"cost_of_debt": 0.045,
+"pe_target_multiple": null,
+"ev_ebitda_target": null,
+"tolerance": 0.15,
+"market_return": 0.08,
+"buy_threshold": 0.05,
+"mc_draws": 10000,
+"mc_seed": 42,
+"source": "human overrides (assumptions.json) on agent recommendations"
+},
+"engine_result": {
+"tp": 42.87987842198037,
+"wacc": 0.07380680038152089,
+"rating": "SELL"
+},
+"supp": {
+"us_comp": 2.9,
+"us_transactions": 1.5,
+"us_ticket": 1.4,
+"us_ecom": 23,
+"global_ecom": 17,
+"global_ads": 25,
+"connect_ex_vizio": 36,
+"membership_fee": 17,
+"intl_sales_cc": 3.3,
+"sams_comp": 4.9,
+"gp_rate": 24.5,
+"gp_rate_chg_bp": 28,
+"opex_pct": 21.5
+},
+"guidance": {
+"sales_cc": "+4.9–5.2%",
+"adj_oi_cc": "+8.0–8.6%",
+"adj_eps": "$2.84–2.89",
+"capex_pct_sales": 4.0,
+"tax_rate": "23.5–24.5%"
+},
+"built": "2026-11-20 20:15 UTC"
+}

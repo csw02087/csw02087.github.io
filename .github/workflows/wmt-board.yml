@@ -1,0 +1,26 @@
+name: WMT board — validate & rebuild
+# Validates the committed JSON on every change; rebuilds from Capital IQ only if raw inputs are present
+# (they are git-ignored, so normally you run pipeline/build.py locally and commit data/board.json).
+on:
+  workflow_dispatch:
+  push:
+    paths: ["wmt-board/**"]
+permissions:
+  contents: write
+jobs:
+  board:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Validate JSON
+        run: python -c "import json;json.load(open('wmt-board/data/board.json'));json.load(open('wmt-board/data/assumptions.json'));print('json ok')"
+      - name: Rebuild from CapIQ (only when inputs exist)
+        if: hashFiles('wmt-board/pipeline/input/capiq_wmt.xls') != ''
+        run: |
+          pip install -r wmt-board/pipeline/requirements.txt
+          python wmt-board/pipeline/build.py
+          git config user.name github-actions && git config user.email actions@github.com
+          git add wmt-board/index.html wmt-board/data/board.json
+          git diff --cached --quiet || (git commit -m "chore(wmt-board): rebuild board" && git push)
