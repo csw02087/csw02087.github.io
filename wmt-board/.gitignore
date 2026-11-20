@@ -1,0 +1,4 @@
+pipeline/input/*
+!pipeline/input/.gitkeep
+pipeline/data/
+__pycache__/

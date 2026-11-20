@@ -1,0 +1,203 @@
+"""
+dashboard_build.py — Assumption Dashboard (H1 gate UI). Embeds pipeline data into a self-contained
+HTML page: sliders/inputs per FCF driver with history · consensus · peer · agent recommendation,
+live DCF/WACC/sensitivity/Monte Carlo/multiples recomputed client-side, and an assumptions.json export.
+"""
+from __future__ import annotations
+
+import json
+import os
+
+HERE = os.path.dirname(os.path.abspath(__file__)); D = os.path.join(HERE, "data"); OUT = os.path.join(HERE, "out")
+m = json.load(open(os.path.join(D, "model_inputs.json"))); an = json.load(open(os.path.join(D, "analysis.json"))); v = json.load(open(os.path.join(D, "valuation.json")))
+
+Q = m["quarterly"]; A = m["annual"]; qs = list(Q); fys = list(A)
+data = {
+    "fys": fys, "qs": qs,
+    "annual": {k: {f: A[f].get(k) for f in fys} for k in ("rev", "ebitda", "ebit", "da", "capex", "fcf", "nwc", "d_nwc", "ebitda_margin", "ebit_margin", "capex_pct", "da_pct_capex", "tax_rate", "nca_pct", "ncl_pct", "rev_growth", "ni", "eps")},
+    "quarterly": {k: {q: Q[q].get(k) for q in qs} for k in ("rev", "ebitda", "ebit", "capex", "fcf", "ebitda_margin", "ebit_margin", "capex_pct", "tax_rate", "nca_pct", "ncl_pct", "rev_yoy", "ebit_yoy", "nwc")},
+    "ltm": m["ltm"], "market": m["market"], "consensus": m["consensus"], "own_multiples": {k: val for k, val in m["own_multiples"].items() if k != "series"},
+    "mult_series": [{"d": r["as_of"], "pe": r.get("pe_ntm"), "ev": r.get("tev_ntm_ebitda")} for r in m["own_multiples"]["series"]],
+    "peers": {k: {"group": p["group"], "beta_capiq": p["beta_capiq"], "beta_reg": p["beta_reg"], "unlev": p["unlev_capiq"], "rev_g": p["rev_g_ltm"], "ebitda_m": p["ebitda_m_ltm"], "ebit_m": p["ebit_m_ltm"]} for k, p in m["peers"].items()},
+    "betas": m["betas"]["WMT"], "rec": an["recommendations"], "anomalies": an["anomalies"], "events": an["events"], "seasonality": an["seasonality"], "drivers": {k: {"cagr_3y": an["drivers"][k].get("cagr_3y"), "mean": an["drivers"][k].get("mean")} for k in an["drivers"]},
+    "base_fy26": {"rev": A["FY26"]["rev"], "nwc": A["FY26"]["nwc"], "fcf": A["FY26"]["fcf"]}, "assumptions": v["assumptions"], "engine_result": {"tp": v["target_price"], "wacc": v["wacc"]["wacc"], "rating": v["rating"]},
+    "supp": m["supplement_3q27"]["kpi"], "guidance": m["supplement_3q27"]["guidance_fy27"],
+}
+
+HTML = r"""<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>WMT Assumption Board</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: KPI strip on top; left = driver panels (history + inputs), right = live valuation results. */
+:root{--bg:#f7f7f5;--fg:#1c1f26;--muted:#5f6672;--line:#d9dcdf;--panel:#ffffff;--accent:#14315c;--accent-soft:#e3ebf5;--warn:#b4530b;--warn-soft:#f8e8da;--ok:#2d7a4f;--ok-soft:#dff0e5;--bad:#b3261e;--bad-soft:#f8e2e0;--font:"IBM Plex Sans KR",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15181d;--fg:#e8eaee;--muted:#a0a7b2;--line:#343a44;--panel:#1e2229;--accent:#7fb6e6;--accent-soft:#1b3448;--warn:#e49a5a;--warn-soft:#3d2a18;--ok:#6fc590;--ok-soft:#1c3526;--bad:#ef8a84;--bad-soft:#3f1f1d;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#15181d;--fg:#e8eaee;--muted:#a0a7b2;--line:#343a44;--panel:#1e2229;--accent:#7fb6e6;--accent-soft:#1b3448;--warn:#e49a5a;--warn-soft:#3d2a18;--ok:#6fc590;--ok-soft:#1c3526;--bad:#ef8a84;--bad-soft:#3f1f1d;color-scheme:dark}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);font-size:13.5px;line-height:1.45;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:16px 48px}
+header{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:baseline;justify-content:space-between;margin-bottom:12px}
+h1{font-size:20px;margin:0;font-weight:600}.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin:10px 0 16px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:8px 10px}.kpi .k{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}.kpi .v{font-size:19px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--accent)}.kpi .v.bad{color:var(--bad)}.kpi .v.ok{color:var(--ok)}.kpi .s{font-size:11px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:14px}@media(max-width:960px){.grid{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:12px 14px;margin-bottom:12px;min-width:0}
+.card h2{font-size:14px;margin:0 0 6px;font-weight:600}.card h3{font-size:12.5px;margin:10px 0 4px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.drv{border-top:1px solid var(--line);padding:10px 0}.drv:first-of-type{border-top:0}
+.drv .hd{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}.drv .hd b{font-size:13.5px}.drv .hd .ref{font-size:11.5px;color:var(--muted);font-family:var(--mono)}
+.row{display:grid;grid-template-columns:150px 1fr;gap:10px;align-items:center;margin-top:6px}@media(max-width:560px){.row{grid-template-columns:1fr}}
+.spark{width:100%;height:44px}.inputs{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}.inputs label{font-size:10px;color:var(--muted);display:block;font-family:var(--mono)}
+.inputs input{width:100%;font:12.5px var(--mono);padding:4px 5px;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--fg)}
+.btns{display:flex;gap:4px;flex-wrap:wrap;margin-top:6px}.btns button,button.b{font:11.5px var(--font);padding:3px 8px;border:1px solid var(--line);background:var(--bg);color:var(--fg);border-radius:4px;cursor:pointer}.btns button:hover,button.b:hover{border-color:var(--accent)}.btns button.rec{border-color:var(--accent);background:var(--accent-soft)}
+.why{font-size:11.5px;color:var(--muted);margin-top:4px}
+table{border-collapse:collapse;width:100%;font-size:12px;font-variant-numeric:tabular-nums}th,td{padding:3px 6px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}th{color:var(--muted);font-weight:600;font-size:11px}td:first-child,th:first-child{text-align:left}tr.b td{font-weight:600}
+.tbl{overflow-x:auto}.flag{background:var(--warn-soft);border-left:3px solid var(--warn);padding:5px 8px;margin:4px 0;font-size:12px}.okbox{background:var(--ok-soft);border-left:3px solid var(--ok);padding:5px 8px;margin:4px 0;font-size:12px}
+.sens td.hot{background:var(--bad-soft)}.sens td.cool{background:var(--ok-soft)}.sens td.base{outline:2px solid var(--accent)}
+.coc{display:grid;grid-template-columns:1fr 1fr;gap:8px 14px}@media(max-width:560px){.coc{grid-template-columns:1fr}}.coc label{font-size:11.5px;color:var(--muted);display:block}.coc input,.coc select{width:100%;font:12.5px var(--mono);padding:4px 6px;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--fg)}
+.ev{font-size:12px}.ev li{margin:3px 0}.ev .q{font-family:var(--mono);color:var(--accent)}
+textarea{width:100%;height:120px;font:11px var(--mono);background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:4px;padding:6px}
+.hist{display:flex;gap:1px;align-items:flex-end;height:60px}.hist i{flex:1;background:var(--accent);opacity:.8;display:block}
+.toggle{font-size:12px;color:var(--muted)}.toggle button{margin-left:4px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+</style>
+</head>
+<body>
+<header>
+  <div><div class="eyebrow">Walmart Inc (WMT) · FIN 5203 · H1 gate</div><h1 id="title">가정 보드 — 에이전트 추천 → 사람 결정 → DCF 즉시 재계산</h1></div>
+  <div class="toggle"><span id="meta" style="margin-right:12px"></span><span id="langbox">Language <button class="b" data-l="ko">한국어</button><button class="b" data-l="en">English</button></span></div>
+</header>
+<div class="kpis" id="kpis"></div>
+<div class="grid">
+  <div>
+    <div class="card"><h2 id="h_drivers">① FCF 변수 (FY27E → FY31E)</h2><div id="drivers"></div></div>
+    <div class="card"><h2 id="h_coc">② 자본비용 (CAPM / WACC) · 터미널</h2><div class="coc" id="coc"></div><div id="coc_out" class="why" style="margin-top:8px"></div></div>
+    <div class="card"><h2 id="h_events">③ 이상 분기 · 이벤트 (Historical Agent)</h2><div id="events" class="ev"></div></div>
+  </div>
+  <div>
+    <div class="card"><h2 id="h_val">④ DCF 결과</h2><div id="valout"></div></div>
+    <div class="card"><h2 id="h_sens">⑤ 민감도 · 시나리오 · 몬테카를로</h2><div id="sens"></div></div>
+    <div class="card"><h2 id="h_x">⑥ 교차검증 (P/E · EV/EBITDA) · 플래그 · 투자의견</h2><div id="xcheck"></div></div>
+    <div class="card"><h2 id="h_exp">⑦ assumptions.json 내보내기</h2><p class="why" id="exp_note">아래 JSON을 data/assumptions.json 에 저장한 뒤 valuation_engine.py → note_generator / fill_v3 를 실행하면 보고서가 이 가정으로 재생성됩니다.</p><textarea id="exp" readonly></textarea><div class="btns"><button class="b" id="copy">Copy JSON</button><button class="b" id="reset">Reset to agent recommendation</button></div></div>
+  </div>
+</div>
+<script id="data" type="application/json">__DATA__</script>
+<script>
+const EMB=document.getElementById('data').textContent.trim();
+async function loadData(){if(EMB&&EMB!=='__FETCH__')return JSON.parse(EMB);const r=await fetch('data/board.json',{cache:'no-store'});if(!r.ok)throw new Error('board.json '+r.status);return r.json();}
+async function loadCommitted(){try{const r=await fetch('data/assumptions.json',{cache:'no-store'});if(r.ok)return await r.json();}catch(e){}return null;}
+Promise.all([loadData(),loadCommitted()]).then(([D,COMMITTED])=>{window.__D=D;main(D,COMMITTED);}).catch(e=>{document.getElementById('kpis').innerHTML='<div class="flag">data/board.json 로드 실패: '+e.message+'</div>';});
+function main(D,COMMITTED){
+const YEARS=['FY27E','FY28E','FY29E','FY30E','FY31E'];
+const T={ko:{drivers:'① FCF 변수 (FY27E → FY31E)',coc:'② 자본비용 (CAPM / WACC) · 터미널',events:'③ 이상 분기 · 이벤트 (Historical Agent)',val:'④ DCF 결과',sens:'⑤ 민감도 · 시나리오 · 몬테카를로',x:'⑥ 교차검증 (P/E · EV/EBITDA) · 플래그 · 투자의견',exp:'⑦ assumptions.json 내보내기',title:'가정 보드 — 에이전트 추천 → 사람 결정 → DCF 즉시 재계산',
+  rec:'추천',cons:'컨센',peer:'피어',hist:'과거평균',last:'최근',price:'현재가',dcf:'DCF 주당가치',up:'상승여력',rating:'투자의견',wacc:'WACC',impg:'내재 영구성장률',fcfy:'FCF 수익률',pe:'P/E FY28E',
+  rev_growth:'매출 성장률',ebitda_margin:'EBITDA 마진',capex_pct:'Capex / 매출',da_pct_capex:'D&A / Capex',tax_rate:'유효세율',nca_pct:'순유동자산 / 매출',ncl_pct:'순유동부채 / 매출',
+  rf:'무위험수익률',beta:'베타 선택',mrp:'시장위험프리미엄',kd:'세전 타인자본비용',g:'영구성장률',tol:'교차검증 허용오차',mr:'시장수익률 가정',thr:'Buy/Sell 임계값',
+  exp_note:'아래 JSON을 data/assumptions.json 에 저장한 뒤 valuation_engine.py → note_generator / fill_v3 를 실행하면 보고서가 이 가정으로 재생성됩니다.'},
+ en:{drivers:'① FCF drivers (FY27E → FY31E)',coc:'② Cost of capital (CAPM / WACC) · terminal',events:'③ Flagged quarters · events (Historical Agent)',val:'④ DCF result',sens:'⑤ Sensitivity · scenarios · Monte Carlo',x:'⑥ Cross-checks (P/E · EV/EBITDA) · flags · rating',exp:'⑦ Export assumptions.json',title:'Assumption board — agent recommends → human decides → DCF recomputes live',
+  rec:'Agent',cons:'Cons.',peer:'Peers',hist:'Hist. mean',last:'Last',price:'Price',dcf:'DCF value / share',up:'Upside',rating:'Rating',wacc:'WACC',impg:'Implied perpetual g',fcfy:'FCF yield',pe:'P/E FY28E',
+  rev_growth:'Revenue growth',ebitda_margin:'EBITDA margin',capex_pct:'Capex / revenue',da_pct_capex:'D&A / capex',tax_rate:'Effective tax rate',nca_pct:'Net current assets / rev',ncl_pct:'Net current liabilities / rev',
+  rf:'Risk-free rate',beta:'Beta choice',mrp:'Market risk premium',kd:'Pre-tax cost of debt',g:'Terminal growth',tol:'Cross-check tolerance',mr:'Market return assumption',thr:'Buy/Sell threshold',
+  exp_note:'Save this JSON as data/assumptions.json, then run valuation_engine.py → note_generator / fill_v3 to regenerate the report with these assumptions.'}};
+let lang='ko';const t=k=>T[lang][k]||k;
+const pc=(x,d=1)=>x==null?'–':(x*100).toFixed(d)+'%';const usd=(x,d=0)=>x==null?'–':'$'+x.toLocaleString(undefined,{maximumFractionDigits:d,minimumFractionDigits:d});const num=(x,d=0)=>x==null?'–':x.toLocaleString(undefined,{maximumFractionDigits:d});
+const DRV=['rev_growth','ebitda_margin','capex_pct','da_pct_capex','tax_rate','nca_pct','ncl_pct'];
+const histKey={rev_growth:'rev_yoy',ebitda_margin:'ebitda_margin',capex_pct:'capex_pct',da_pct_capex:null,tax_rate:'tax_rate',nca_pct:'nca_pct',ncl_pct:'ncl_pct'};
+const annKey={rev_growth:'rev_growth',ebitda_margin:'ebitda_margin',capex_pct:'capex_pct',da_pct_capex:'da_pct_capex',tax_rate:'tax_rate',nca_pct:'nca_pct',ncl_pct:'ncl_pct'};
+// ---------- state (assumptions) ----------
+const R=D.rec;let S;
+function fromRec(){return {rev_growth:[...R.rev_growth.recommended],ebitda_margin:[...R.ebitda_margin.recommended],capex_pct:[...R.capex_pct.recommended],da_pct_capex:[...R.da_pct_capex.recommended],tax_rate:[...R.tax_rate.recommended],nca_pct:[...R.nca_pct.recommended],ncl_pct:[...R.ncl_pct.recommended],
+  terminal_growth:R.terminal_growth.recommended,beta_choice:'blume',beta_override:null,risk_free:R.risk_free.recommended,mrp:R.mrp.recommended,cost_of_debt:R.cost_of_debt.recommended,tolerance:0.15,market_return:0.08,buy_threshold:0.05,mc_draws:3000,mc_seed:42,source:'dashboard (H1 gate)'};}
+try{const saved=localStorage.getItem('wmt_assump');S=saved?JSON.parse(saved):(COMMITTED?{...fromRec(),...COMMITTED}:fromRec());}catch(e){S=COMMITTED?{...fromRec(),...COMMITTED}:fromRec();}
+function save(){try{localStorage.setItem('wmt_assump',JSON.stringify(S));}catch(e){}}
+// ---------- model ----------
+function betaChoices(){const b=D.betas.m5y.beta;const core=Object.values(D.peers).filter(p=>p.group==='core'&&p.unlev).map(p=>p.unlev).sort((a,b)=>a-b);const med=core[Math.floor(core.length/2)];const de=D.market.total_debt/D.market.mcap;return {regression:b,blume:1/3+2/3*b,capiq:D.peers.WMT.beta_capiq,peer:med*(1+0.75*de)};}
+function wacc(a){const ch=betaChoices();const beta=a.beta_override!=null?a.beta_override:ch[a.beta_choice];const ke=a.risk_free+beta*a.mrp;const mk=D.market;const nd=mk.total_debt-mk.cash;const ev=mk.mcap+mk.total_debt+mk.nci-mk.cash;const wd=nd/ev;const kd=a.cost_of_debt*(1-a.tax_rate[0]);return {beta,ke,kd,wd,we:1-wd,wacc:(1-wd)*ke+wd*kd,nd,ev,nci:mk.nci};}
+function project(a){let rev=D.base_fy26.rev,nwcp=D.base_fy26.nwc;const rows=[];for(let i=0;i<5;i++){rev*=1+a.rev_growth[i];const ebitda=rev*a.ebitda_margin[i],capex=rev*a.capex_pct[i],da=capex*a.da_pct_capex[i],ebit=ebitda-da,nopat=ebit*(1-a.tax_rate[i]),nwc=rev*(a.nca_pct[i]-a.ncl_pct[i]),dnwc=nwc-nwcp;nwcp=nwc;rows.push({y:YEARS[i],rev,ebitda,da,ebit,nopat,capex,nwc,dnwc,fcf:nopat+da-capex-dnwc});}return rows;}
+function dcf(rows,w,g,nd,nci){let pv=0;rows.forEach((r,i)=>pv+=r.fcf/Math.pow(1+w,i+1));const tv=rows[4].fcf*(1+g)/(w-g);const pvtv=tv/Math.pow(1+w,5);const ev=pv+pvtv;const eq=ev-nd-nci;return {pv,tv,pvtv,ev,eq,ps:eq/D.market.shares_m,tvs:pvtv/ev};}
+function bisect(f,lo,hi){for(let i=0;i<60;i++){const mid=(lo+hi)/2;if(f(mid)>0)hi=mid;else lo=mid;}return (lo+hi)/2;}
+function mulberry(seed){return function(){let t=seed+=0x6D2B79F5;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return ((t^t>>>14)>>>0)/4294967296;}}
+function gauss(rnd){let u=0,v=0;while(u===0)u=rnd();while(v===0)v=rnd();return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v);}
+function compute(a){const W=wacc(a);const rows=project(a);const g=a.terminal_growth;const base=dcf(rows,W.wacc,g,W.nd,W.nci);const px=D.market.price;
+  const grid=[],wa=[-.01,-.005,0,.005,.01].map(d=>W.wacc+d),ga=[-.01,-.005,0,.005,.01].map(d=>g+d);wa.forEach(w=>grid.push(ga.map(gg=>dcf(rows,w,gg,W.nd,W.nci).ps)));
+  const scen=(dg,dm,dc,db,dgt)=>{const a2=JSON.parse(JSON.stringify(a));a2.rev_growth=a.rev_growth.map(x=>x+dg);a2.ebitda_margin=a.ebitda_margin.map(x=>x+dm);a2.capex_pct=a.capex_pct.map(x=>x+dc);a2.beta_override=W.beta+db;const W2=wacc(a2);return dcf(project(a2),W2.wacc,g+dgt,W2.nd,W2.nci).ps;};
+  const bull=scen(.01,.004,-.003,-.1,.005),bear=scen(-.015,-.005,.003,.15,-.005);
+  const rnd=mulberry(a.mc_seed);const res=[];const se=D.betas.m5y.se;for(let i=0;i<a.mc_draws;i++){const b=W.beta+se*gauss(rnd),mrp=a.mrp+.01*gauss(rnd),gg=Math.min(.045,Math.max(.01,g+.005*gauss(rnd))),gs=.01*gauss(rnd),ms=.003*gauss(rnd);const ke=a.risk_free+b*mrp;let w=W.we*ke+W.wd*W.kd;w=Math.max(w,gg+.01);let rev=D.base_fy26.rev,nwcp=D.base_fy26.nwc,pv=0,last=0;for(let k=0;k<5;k++){rev*=1+a.rev_growth[k]+gs;const ebitda=rev*(a.ebitda_margin[k]+ms),capex=rev*a.capex_pct[k],da=capex*a.da_pct_capex[k],nwc=rev*(a.nca_pct[k]-a.ncl_pct[k]);const f=(ebitda-da)*(1-a.tax_rate[k])+da-capex-(nwc-nwcp);nwcp=nwc;pv+=f/Math.pow(1+w,k+1);last=f;}const tv=last*(1+gg)/(w-gg)/Math.pow(1+w,5);res.push((pv+tv-W.nd-W.nci)/D.market.shares_m);}
+  res.sort((x,y)=>x-y);const p=q=>res[Math.floor(q*(res.length-1))];const mc={p5:p(.05),p25:p(.25),med:p(.5),p75:p(.75),p95:p(.95),prob:res.filter(x=>x>px).length/res.length,res};
+  const targetEV=px*D.market.shares_m+W.nd+W.nci;const impg=bisect(gg=>dcf(rows,W.wacc,gg,W.nd,W.nci).ev-targetEV,0,W.wacc-.002);const impw=bisect(w=>targetEV-dcf(rows,w,g,W.nd,W.nci).ev,g+.002,.2);
+  const c28=D.consensus.FY28E;const om=D.own_multiples;const peV=om.pe_ntm_avg*c28.eps,evV=(om.ev_ntm_avg*c28.ebitda-W.nd-W.nci)/D.market.shares_m;
+  const flags=[];if(Math.abs(peV/base.ps-1)>a.tolerance)flags.push(lang==='ko'?`P/E 교차검증 ${usd(peV)} (${om.pe_ntm_avg.toFixed(1)}x FY28E)이 DCF 대비 ${pc(peV/base.ps-1,0)} 괴리`:`P/E cross-check ${usd(peV)} (${om.pe_ntm_avg.toFixed(1)}x FY28E) deviates ${pc(peV/base.ps-1,0)} from DCF`);
+  if(Math.abs(evV/base.ps-1)>a.tolerance)flags.push(lang==='ko'?`EV/EBITDA 교차검증 ${usd(evV)} (${om.ev_ntm_avg.toFixed(1)}x)이 DCF 대비 ${pc(evV/base.ps-1,0)} 괴리`:`EV/EBITDA cross-check ${usd(evV)} (${om.ev_ntm_avg.toFixed(1)}x) deviates ${pc(evV/base.ps-1,0)} from DCF`);
+  if(base.tvs>.8)flags.push(lang==='ko'?`터미널 가치가 EV의 ${pc(base.tvs,0)} — g/WACC 스프레드가 지배`:`Terminal value is ${pc(base.tvs,0)} of EV — g/WACC spread dominates`);
+  const dy=0.99/px,up=base.ps/px-1,tot=up+dy,ex=tot-a.market_return;const rating=ex>=a.buy_threshold?'BUY':ex<=-a.buy_threshold?'SELL':'HOLD';
+  return {W,rows,base,grid,wa,ga,bull,bear,mc,impg,impw,peV,evV,c28,om,flags,dy,up,tot,ex,rating,px,impPE:base.ps/c28.eps,curPE:px/c28.eps,impEV:base.ev/c28.ebitda,curEV:W.ev/c28.ebitda};}
+// ---------- UI ----------
+function spark(vals,labels,fmt){const v=vals.filter(x=>x!=null);if(!v.length)return '';const mn=Math.min(...v),mx=Math.max(...v),w=150,h=44,n=vals.length;const y=x=>h-6-(x-mn)/((mx-mn)||1)*(h-14);const pts=vals.map((x,i)=>x==null?null:[(i/(n-1))*(w-4)+2,y(x)]).filter(Boolean);
+  const path=pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' ');const lastp=pts[pts.length-1];
+  return `<svg class="spark" viewBox="0 0 ${w} ${h}" role="img" aria-label="history"><path d="${path}" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".8"/><circle cx="${lastp[0]}" cy="${lastp[1]}" r="2.5" fill="var(--accent)"/><text x="2" y="10" font-size="8" fill="var(--muted)">${fmt(mx)}</text><text x="2" y="${h-1}" font-size="8" fill="var(--muted)">${fmt(mn)}</text><text x="${w-2}" y="10" font-size="8" text-anchor="end" fill="var(--accent)">${labels[labels.length-1]} ${fmt(v[v.length-1])}</text></svg>`;}
+function renderDrivers(){const el=document.getElementById('drivers');el.innerHTML=DRV.map(k=>{const r=R[k];const qk=histKey[k];const qv=qk?D.qs.map(q=>D.quarterly[qk][q]):D.fys.map(f=>D.annual[annKey[k]][f]);const ql=qk?D.qs:D.fys;
+  const cons=r.consensus?Object.entries(r.consensus).map(([y,x])=>`${y} ${pc(x)}`).join(' / '):'–';const peer=r.peer_median_ltm!=null?pc(r.peer_median_ltm):'–';const hist=r.history_mean!=null?pc(r.history_mean):r.history_cagr_3y!=null?pc(r.history_cagr_3y)+' CAGR':'–';
+  const guide=r.guidance_fy27!=null?(typeof r.guidance_fy27==='number'?pc(r.guidance_fy27):r.guidance_fy27):'–';
+  return `<div class="drv" data-k="${k}"><div class="hd"><b>${t(k)}</b><span class="ref">${t('hist')} ${hist} · ${t('last')} ${pc(r.last!=null?r.last:r.ltm_yoy)} · ${t('cons')} ${cons} · ${t('peer')} ${peer} · guide ${guide}</span></div>
+  <div class="row"><div>${spark(qv,ql,x=>pc(x,1))}</div><div><div class="inputs">${YEARS.map((y,i)=>`<div><label>${y}</label><input type="number" step="0.1" data-k="${k}" data-i="${i}" value="${(S[k][i]*100).toFixed(2)}"></div>`).join('')}</div>
+  <div class="btns"><button class="rec" data-fill="rec" data-k="${k}">${t('rec')}: ${r.recommended.map(x=>(x*100).toFixed(1)).join('→')}%</button>${r.consensus?`<button data-fill="cons" data-k="${k}">${t('cons')}</button>`:''}${r.peer_median_ltm!=null?`<button data-fill="peer" data-k="${k}">${t('peer')}</button>`:''}${r.history_mean!=null?`<button data-fill="hist" data-k="${k}">${t('hist')}</button>`:''}</div>
+  <div class="why">${r['rationale_'+lang]}</div></div></div></div>`;}).join('');
+  el.querySelectorAll('input').forEach(inp=>inp.addEventListener('input',e=>{S[e.target.dataset.k][+e.target.dataset.i]=parseFloat(e.target.value)/100||0;update();}));
+  el.querySelectorAll('button[data-fill]').forEach(b=>b.addEventListener('click',e=>{const k=e.target.dataset.k,r=R[k];let vals;if(e.target.dataset.fill==='rec')vals=[...r.recommended];else if(e.target.dataset.fill==='cons'){const c=Object.values(r.consensus);vals=[c[0],c[1]||c[0],c[1]||c[0],c[1]||c[0],c[1]||c[0]];}else if(e.target.dataset.fill==='peer')vals=Array(5).fill(r.peer_median_ltm);else vals=Array(5).fill(r.history_mean);S[k]=vals;renderDrivers();update();}));}
+function renderCoc(){const ch=betaChoices();const el=document.getElementById('coc');el.innerHTML=`
+  <div><label>${t('rf')}</label><input type="number" step="0.05" id="rf" value="${(S.risk_free*100).toFixed(2)}"></div>
+  <div><label>${t('beta')}</label><select id="beta"><option value="blume">Blume ${ch.blume.toFixed(2)}</option><option value="regression">Regression 5y-M ${ch.regression.toFixed(2)} (R² ${D.betas.m5y.r2.toFixed(2)})</option><option value="capiq">CapIQ 5y ${ch.capiq.toFixed(2)}</option><option value="peer">Peer relevered ${ch.peer.toFixed(2)}</option><option value="custom">Custom</option></select></div>
+  <div><label>Custom β</label><input type="number" step="0.01" id="betac" value="${S.beta_override!=null?S.beta_override:''}" placeholder="${ch.blume.toFixed(2)}"></div>
+  <div><label>${t('mrp')}</label><input type="number" step="0.1" id="mrp" value="${(S.mrp*100).toFixed(2)}"></div>
+  <div><label>${t('kd')}</label><input type="number" step="0.1" id="kd" value="${(S.cost_of_debt*100).toFixed(2)}"></div>
+  <div><label>${t('g')}</label><input type="number" step="0.1" id="g" value="${(S.terminal_growth*100).toFixed(2)}"></div>
+  <div><label>${t('tol')}</label><input type="number" step="1" id="tol" value="${(S.tolerance*100).toFixed(0)}"></div>
+  <div><label>${t('mr')} / ${t('thr')}</label><input type="text" id="mr" value="${(S.market_return*100).toFixed(1)} / ${(S.buy_threshold*100).toFixed(1)}"></div>`;
+  document.getElementById('beta').value=S.beta_override!=null?'custom':S.beta_choice;
+  const on=(id,fn)=>document.getElementById(id).addEventListener('input',e=>{fn(e.target.value);update();});
+  on('rf',x=>S.risk_free=parseFloat(x)/100);on('mrp',x=>S.mrp=parseFloat(x)/100);on('kd',x=>S.cost_of_debt=parseFloat(x)/100);on('g',x=>S.terminal_growth=parseFloat(x)/100);on('tol',x=>S.tolerance=parseFloat(x)/100);
+  on('mr',x=>{const [a,b]=x.split('/').map(s=>parseFloat(s)/100);if(!isNaN(a))S.market_return=a;if(!isNaN(b))S.buy_threshold=b;});
+  document.getElementById('beta').addEventListener('change',e=>{if(e.target.value==='custom'){S.beta_override=parseFloat(document.getElementById('betac').value)||betaChoices().blume;}else{S.beta_choice=e.target.value;S.beta_override=null;}update();});
+  on('betac',x=>{if(x!==''){S.beta_override=parseFloat(x);document.getElementById('beta').value='custom';}});}
+function renderEvents(){const el=document.getElementById('events');el.innerHTML='<ul>'+D.anomalies.map(a=>`<li><span class="q">${a.quarter}</span> ${a.metric} ${pc(a.value)} (z ${a.z>0?'+':''}${a.z.toFixed(1)}) — ${a.events[0][lang]}</li>`).join('')+'</ul>'+`<div class="why">3Q FY27 (8-K 19-Nov-26): comp +${D.supp.us_comp}% (tx +${D.supp.us_transactions}% / ticket +${D.supp.us_ticket}%), GM ${D.supp.gp_rate}% (+${D.supp.gp_rate_chg_bp}bp), ads +${D.supp.global_ads}%, e-com +${D.supp.global_ecom}%, membership +${D.supp.membership_fee}%. FY27 guide: sales ${D.guidance.sales_cc}, adj. OI ${D.guidance.adj_oi_cc}, adj. EPS ${D.guidance.adj_eps}, capex ${D.guidance.capex_pct_sales}%.</div>`;}
+function update(){save();const r=compute(S);const k=document.getElementById('kpis');const cls=r.up<0?'bad':'ok';
+  k.innerHTML=[[t('price'),usd(r.px,2),D.market.price_date],[t('dcf'),usd(r.base.ps),`bear ${usd(r.bear)} / bull ${usd(r.bull)}`,cls],[t('up'),pc(r.up,0),`total ${pc(r.tot)} · excess ${pc(r.ex)}`,cls],[t('rating'),r.rating,`rule ±${pc(S.buy_threshold,0)}`,r.rating==='BUY'?'ok':r.rating==='SELL'?'bad':''],[t('wacc'),pc(r.W.wacc,2),`β ${r.W.beta.toFixed(2)} · ke ${pc(r.W.ke,2)} · wD ${pc(r.W.wd)}`],[t('impg'),pc(r.impg,2),`implied WACC ${pc(r.impw,2)}`],[t('fcfy'),pc(D.base_fy26.fcf/D.market.mcap,2),'FY26 / mcap'],[t('pe'),r.curPE.toFixed(1)+'x',`implied @DCF ${r.impPE.toFixed(1)}x`]]
+    .map(([a,b,c,cl])=>`<div class="kpi"><div class="k">${a}</div><div class="v ${cl||''}">${b}</div><div class="s">${c}</div></div>`).join('');
+  document.getElementById('coc_out').textContent=`ke = ${pc(S.risk_free,2)} + ${r.W.beta.toFixed(2)} × ${pc(S.mrp)} = ${pc(r.W.ke,2)} · kd(1−t) = ${pc(r.W.kd,2)} · wD ${pc(r.W.wd)} / wE ${pc(r.W.we)} · WACC ${pc(r.W.wacc,2)} · β SE ${D.betas.m5y.se.toFixed(2)} (MC)`;
+  const rows=r.rows;document.getElementById('valout').innerHTML=`<div class="tbl"><table><tr><th>US$m</th>${rows.map(x=>`<th>${x.y}</th>`).join('')}</tr>
+    <tr class="b"><td>Revenue</td>${rows.map(x=>`<td>${num(x.rev)}</td>`).join('')}</tr><tr><td>EBITDA</td>${rows.map(x=>`<td>${num(x.ebitda)}</td>`).join('')}</tr><tr><td>EBIT</td>${rows.map(x=>`<td>${num(x.ebit)}</td>`).join('')}</tr><tr><td>EBIT(1−t)</td>${rows.map(x=>`<td>${num(x.nopat)}</td>`).join('')}</tr><tr><td>+ D&A</td>${rows.map(x=>`<td>${num(x.da)}</td>`).join('')}</tr><tr><td>− Capex</td>${rows.map(x=>`<td>${num(x.capex)}</td>`).join('')}</tr><tr><td>− ΔNWC</td>${rows.map(x=>`<td>${num(x.dnwc)}</td>`).join('')}</tr><tr class="b"><td>FCF</td>${rows.map(x=>`<td>${num(x.fcf)}</td>`).join('')}</tr></table></div>
+    <table style="margin-top:8px"><tr><td>PV FCF</td><td>${num(r.base.pv)}</td><td>Terminal value (g ${pc(S.terminal_growth)})</td><td>${num(r.base.tv)}</td></tr><tr><td>PV TV (${pc(r.base.tvs,0)} of EV)</td><td>${num(r.base.pvtv)}</td><td>EV</td><td>${num(r.base.ev)}</td></tr><tr><td>− Net debt − NCI</td><td>${num(-(r.W.nd+r.W.nci))}</td><td>Equity</td><td>${num(r.base.eq)}</td></tr><tr class="b"><td>Value / share</td><td>${usd(r.base.ps,2)}</td><td>vs price</td><td>${pc(r.up)}</td></tr></table>`;
+  const bins=24,mn=Math.min(...r.mc.res),mx=Math.max(...r.mc.res),h=new Array(bins).fill(0);r.mc.res.forEach(x=>{h[Math.min(bins-1,Math.floor((x-mn)/(mx-mn)*bins))]++;});const hm=Math.max(...h);
+  document.getElementById('sens').innerHTML=`<div class="tbl"><table class="sens"><tr><th>WACC \\ g</th>${r.ga.map(g=>`<th>${pc(g)}</th>`).join('')}</tr>${r.wa.map((w,i)=>`<tr><td>${pc(w,2)}</td>${r.grid[i].map((x,j)=>`<td class="${x<r.base.ps*.85?'hot':x>r.base.ps*1.15?'cool':''} ${i==2&&j==2?'base':''}">${usd(x)}</td>`).join('')}</tr>`).join('')}</table></div>
+    <table style="margin-top:8px"><tr><th></th><th>Bear</th><th>Base</th><th>Bull</th></tr><tr class="b"><td>DCF / share</td><td>${usd(r.bear)}</td><td>${usd(r.base.ps)}</td><td>${usd(r.bull)}</td></tr></table><div class="why">bear: g −1.5pp, margin −50bp, capex +30bp, β +0.15, TV g −0.5pp · bull: +1pp, +40bp, −30bp, β −0.10, +0.5pp</div>
+    <h3>Monte Carlo (${S.mc_draws.toLocaleString()} draws, seed ${S.mc_seed})</h3><div class="hist">${h.map(x=>`<i style="height:${(x/hm*100).toFixed(0)}%"></i>`).join('')}</div>
+    <table><tr><th>p5</th><th>p25</th><th>median</th><th>p75</th><th>p95</th><th>P(&gt;price)</th></tr><tr><td>${usd(r.mc.p5)}</td><td>${usd(r.mc.p25)}</td><td>${usd(r.mc.med)}</td><td>${usd(r.mc.p75)}</td><td>${usd(r.mc.p95)}</td><td>${pc(r.mc.prob,1)}</td></tr></table><div class="why">β ~ N(${r.W.beta.toFixed(2)}, ${D.betas.m5y.se.toFixed(2)}) · MRP ~ N(${pc(S.mrp)}, 1%) · g ~ N(${pc(S.terminal_growth)}, 0.5%) · growth ±1pp · margin ±30bp</div>`;
+  document.getElementById('xcheck').innerHTML=`<table><tr><th></th><th>Multiple</th><th>Value / share</th><th>vs DCF</th><th>Current</th><th>Implied @ DCF</th></tr>
+    <tr><td>P/E NTM (own 5y avg; p25–p75 ${r.om.pe_ntm_p25.toFixed(1)}–${r.om.pe_ntm_p75.toFixed(1)}x)</td><td>${r.om.pe_ntm_avg.toFixed(1)}x</td><td>${usd(r.peV)}</td><td>${pc(r.peV/r.base.ps-1,0)}</td><td>${r.curPE.toFixed(1)}x</td><td>${r.impPE.toFixed(1)}x</td></tr>
+    <tr><td>EV/EBITDA NTM (own 5y avg; ${r.om.ev_ntm_min.toFixed(1)}–${r.om.ev_ntm_max.toFixed(1)}x)</td><td>${r.om.ev_ntm_avg.toFixed(1)}x</td><td>${usd(r.evV)}</td><td>${pc(r.evV/r.base.ps-1,0)}</td><td>${r.curEV.toFixed(1)}x</td><td>${r.impEV.toFixed(1)}x</td></tr></table>
+    ${r.flags.length?r.flags.map(f=>`<div class="flag">⚑ ${f}</div>`).join(''):'<div class="okbox">✓ cross-checks within tolerance</div>'}
+    <div class="why">${t('rating')}: ${pc(r.up)} + ${pc(r.dy)} − ${pc(S.market_return)} = <b>${pc(r.ex)}</b> → <b>${r.rating}</b> (±${pc(S.buy_threshold,0)})</div>`;
+  const exp={...S,mc_draws:10000};document.getElementById('exp').value=JSON.stringify(exp,null,1);}
+function renderAll(){['drivers','coc','events','val','sens','x','exp'].forEach(k=>document.getElementById('h_'+k).textContent=t(k));document.getElementById('title').textContent=t('title');document.getElementById('exp_note').textContent=t('exp_note');renderDrivers();renderCoc();renderEvents();update();}
+document.querySelectorAll('#langbox button').forEach(b=>b.addEventListener('click',e=>{lang=e.target.dataset.l;document.documentElement.lang=lang;renderAll();}));
+document.getElementById('copy').addEventListener('click',()=>{const ta=document.getElementById('exp');navigator.clipboard.writeText(ta.value).then(()=>{document.getElementById('copy').textContent='Copied ✓';setTimeout(()=>document.getElementById('copy').textContent='Copy JSON',1500);}).catch(()=>{ta.focus();ta.select();});});
+document.getElementById('reset').addEventListener('click',()=>{S=fromRec();renderAll();});
+const meta=document.getElementById('meta');if(meta)meta.textContent=`data: ${D.market.price_date} · ${D.market.capiq_ref?('CapIQ '+D.market.capiq_ref.price_date):''} · built ${D.built||''}`;
+renderAll();
+}
+</script>
+</body>
+</html>"""
+
+import datetime as _dt
+data["built"] = _dt.datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
+os.makedirs(OUT, exist_ok=True)
+html = HTML.replace("__DATA__", json.dumps(data, ensure_ascii=False, default=float).replace("</", "<\\/"))
+open(os.path.join(OUT, "wmt_assumption_board.html"), "w", encoding="utf-8").write(html)
+print("written", os.path.join(OUT, "wmt_assumption_board.html"), len(html) // 1024, "KB")
+site = os.environ.get("BOARD_OUT")
+if site:
+    os.makedirs(os.path.join(site, "data"), exist_ok=True)
+    open(os.path.join(site, "index.html"), "w", encoding="utf-8").write(HTML.replace("__DATA__", "__FETCH__"))
+    json.dump(data, open(os.path.join(site, "data", "board.json"), "w"), ensure_ascii=False, default=float, indent=0)
+    print("site written to", site)

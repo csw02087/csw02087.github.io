@@ -1,0 +1,65 @@
+{
+ "rev_growth": [
+  0.05,
+  0.043,
+  0.04,
+  0.038,
+  0.035
+ ],
+ "ebitda_margin": [
+  0.0645,
+  0.066,
+  0.0675,
+  0.0685,
+  0.0695
+ ],
+ "capex_pct": [
+  0.04,
+  0.04,
+  0.038,
+  0.036,
+  0.035
+ ],
+ "da_pct_capex": [
+  0.55,
+  0.57,
+  0.6,
+  0.63,
+  0.66
+ ],
+ "tax_rate": [
+  0.24,
+  0.24,
+  0.24,
+  0.24,
+  0.24
+ ],
+ "nca_pct": [
+  0.1051059512110725,
+  0.1051059512110725,
+  0.1051059512110725,
+  0.1051059512110725,
+  0.1051059512110725
+ ],
+ "ncl_pct": [
+  0.1339125487397026,
+  0.1339125487397026,
+  0.1339125487397026,
+  0.1339125487397026,
+  0.1339125487397026
+ ],
+ "terminal_growth": 0.03,
+ "beta_choice": "blume",
+ "beta_override": null,
+ "risk_free": 0.0395,
+ "mrp": 0.055,
+ "cost_of_debt": 0.045,
+ "pe_target_multiple": null,
+ "ev_ebitda_target": null,
+ "tolerance": 0.15,
+ "market_return": 0.08,
+ "buy_threshold": 0.05,
+ "mc_draws": 10000,
+ "mc_seed": 42,
+ "source": "agent recommendations (H1 gate: edit data/assumptions.json to override)"
+}

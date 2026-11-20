@@ -41,6 +41,21 @@ const WORKS = [
   },
 
   {
+    id: 'market-report-03',
+    category: 'analysis-reports',
+    title: 'Walmart (NASDAQ: WMT) Equity Valuation — FCF-DCF with Assumption Board',
+    experience: 'FIN 5203 Financial Management · WashU Olin',
+    writtenDate: '2026-11-20',
+    postedDate: '2026-11-20',
+    summary: 'Fiscal-year FCF-DCF valuation of Walmart with CAPM/WACC (regression, Blume, peer-relevered betas), WACC×g sensitivity, Monte Carlo, and P/E · EV/EBITDA cross-checks; quarterly appendix (1Q23–3Q27, S&P Capital IQ). Includes a live assumption board.',
+    content: `
+      <p>Research note on Walmart built on the FIN 5203 FCF-DCF framework (Market Value Balance Sheet → CAPM/WACC → historical ratios → projected FCF), extended with quarterly data from S&amp;P Capital IQ (19 quarters), an event-tagged historical analysis, and quant risk support (sensitivity grid, bear/base/bull scenarios, 10,000-draw Monte Carlo). P/E and EV/EBITDA on Walmart's own 5-year history serve as cross-checks; a reverse DCF shows what the market price implies.</p>
+      <p><a href="wmt-board/" target="_blank" rel="noopener">Open the live assumption board &rarr;</a> — set each FCF driver (history · consensus · peers · agent recommendation) and watch WACC, DCF, sensitivity and Monte Carlo recompute. &nbsp; <a href="reports/wmt-valuation-report-kor.pdf" target="_blank" rel="noopener">Korean version (PDF)</a></p>
+    `,
+    link: 'reports/wmt-valuation-report-eng.pdf',
+    codeFiles: []
+  },
+  {
     id: 'market-report-01',
     category: 'analysis-reports',
     title: 'BH(090460.KS) Company Research',
